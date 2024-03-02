@@ -1,14 +1,8 @@
-import { Layers, Locate, Settings } from "lucide-react";
 import { useState } from "react";
 
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "./ui/command";
+import { CommandDialog, CommandInput } from "./ui/command";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { WidgetList } from "./WidgetList";
 
 interface SearchDialogProps {
   open: boolean;
@@ -29,27 +23,22 @@ export const SearchDialog = ({ open, setOpen }: SearchDialogProps) => {
         value={search}
         onValueChange={handleChange}
       />
-      <CommandList>
-        <CommandEmpty>No results</CommandEmpty>
-        <CommandGroup heading="Places">
-          <CommandItem>
-            <Locate className="mr-2 h-4 w-4" />
-            <span>Current Location</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandGroup heading="Portal Items">
-          <CommandItem>
-            <Layers className="mr-2 h-4 w-4" />
-            <span>Layer 1</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandGroup heading="Widgets">
-          <CommandItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Widget 1</span>
-          </CommandItem>
-        </CommandGroup>
-      </CommandList>
+      <Tabs defaultValue="places">
+        <TabsList className="w-full">
+          <TabsTrigger value="places">Places</TabsTrigger>
+          <TabsTrigger value="portalItems">Portal Items</TabsTrigger>
+          <TabsTrigger value="widgets">Widgets</TabsTrigger>
+        </TabsList>
+        <TabsContent value="places">
+          Make changes to your account here.
+        </TabsContent>
+        <TabsContent value="portalItems">
+          Change your password here.
+        </TabsContent>
+        <TabsContent value="widgets">
+          <WidgetList />
+        </TabsContent>
+      </Tabs>
     </CommandDialog>
   );
 };
