@@ -5,6 +5,7 @@ import widgetsConfig from "@/config/widgets.config.json";
 type Widget = {
   title: string;
   id: string;
+  description: string;
   active: boolean;
 };
 
@@ -22,6 +23,7 @@ export const useWidgetStore = create<State & Actions>()((set) => ({
     acc[widget.id] = {
       title: widget.title,
       id: widget.id,
+      description: widget.description,
       active: false,
     };
     return acc;

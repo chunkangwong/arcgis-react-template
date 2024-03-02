@@ -1,10 +1,12 @@
 [
   {
     "title": "Hello World",
-    "id": "HelloWorld"
+    "id": "HelloWorld",
+    "description": "This is a simple hello world example"
   },
   {
     "title": "Hello World 2",
-    "id": "HelloWorld2"
+    "id": "HelloWorld2",
+    "description": "This is a simple hello world example"
   }
 ]

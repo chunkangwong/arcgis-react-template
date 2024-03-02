@@ -8,6 +8,7 @@ export const WidgetList = () => {
     Object.values(state.widgets).map((widget) => ({
       label: widget.title,
       value: widget.id,
+      description: widget.description,
     }))
   );
   const activateWidget = useWidgetStore((state) => state.activateWidget);

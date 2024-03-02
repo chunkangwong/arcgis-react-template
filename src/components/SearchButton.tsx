@@ -6,7 +6,7 @@ import { useSearchHotkey } from "@/hooks/useSearchHotkey";
 import { SearchDialog } from "./SearchDialog";
 import { Button } from "./ui/button";
 
-const SearchButton = () => {
+export const SearchButton = () => {
   const ref = useRef<HTMLButtonElement>(null);
   const { open, setOpen } = useSearchHotkey();
 
@@ -36,5 +36,3 @@ const SearchButton = () => {
     </>
   );
 };
-
-export default SearchButton;
