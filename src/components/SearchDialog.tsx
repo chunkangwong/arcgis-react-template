@@ -1,6 +1,7 @@
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 
+import { useSearchHotkey } from "@/hooks/useSearchHotkey";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -16,6 +17,7 @@ interface SearchDialogProps {
 
 export const SearchDialog = ({ children }: SearchDialogProps) => {
   const [search, setSearch] = useState("");
+  const { open, setOpen } = useSearchHotkey();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -26,7 +28,7 @@ export const SearchDialog = ({ children }: SearchDialogProps) => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="p-0">
         <DialogHeader>
