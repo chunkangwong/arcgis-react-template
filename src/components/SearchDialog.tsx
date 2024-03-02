@@ -1,52 +1,55 @@
-import { Search, X } from "lucide-react";
+import { Layers, Locate, Settings } from "lucide-react";
 import { useState } from "react";
 
-import { useSearchHotkey } from "@/hooks/useSearchHotkey";
-import { Button } from "./ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTrigger,
-} from "./ui/dialog";
-import { Input } from "./ui/input";
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "./ui/command";
 
 interface SearchDialogProps {
-  children: React.ReactNode;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
-export const SearchDialog = ({ children }: SearchDialogProps) => {
+export const SearchDialog = ({ open, setOpen }: SearchDialogProps) => {
   const [search, setSearch] = useState("");
-  const { open, setOpen } = useSearchHotkey();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
-  const handleClear = () => {
-    setSearch("");
+  const handleChange = (newValue: string) => {
+    setSearch(newValue);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="p-0">
-        <DialogHeader>
-          <div className="flex items-center px-2">
-            <Search />
-            <Input
-              className="border-0 "
-              value={search}
-              onChange={handleChange}
-              placeholder="Search..."
-            />
-            <Button variant="ghost" size="icon" onClick={handleClear}>
-              <X />
-            </Button>
-          </div>
-        </DialogHeader>
-        <div></div>
-      </DialogContent>
-    </Dialog>
+    <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandInput
+        placeholder="Search"
+        value={search}
+        onValueChange={handleChange}
+      />
+      <CommandList>
+        <CommandEmpty>No results</CommandEmpty>
+        <CommandGroup heading="Places">
+          <CommandItem>
+            <Locate className="mr-2 h-4 w-4" />
+            <span>Current Location</span>
+          </CommandItem>
+        </CommandGroup>
+        <CommandGroup heading="Portal Items">
+          <CommandItem>
+            <Layers className="mr-2 h-4 w-4" />
+            <span>Layer 1</span>
+          </CommandItem>
+        </CommandGroup>
+        <CommandGroup heading="Widgets">
+          <CommandItem>
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Widget 1</span>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </CommandDialog>
   );
 };
