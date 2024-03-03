@@ -1,15 +1,18 @@
 import { Settings } from "lucide-react";
 
-import { useWidgetStore } from "@/store/useWidgetStore";
+import {
+  selectWidgetsBySearchTerm,
+  useWidgetStore,
+} from "@/store/useWidgetStore";
 import { SearchList } from "./SearchList";
 
-export const WidgetList = () => {
+interface WidgetListProps {
+  searchTerm: string;
+}
+
+export const WidgetList = ({ searchTerm }: WidgetListProps) => {
   const widgetList = useWidgetStore((state) =>
-    Object.values(state.widgets).map((widget) => ({
-      label: widget.title,
-      value: widget.id,
-      description: widget.description,
-    }))
+    selectWidgetsBySearchTerm(state, searchTerm)
   );
   const activateWidget = useWidgetStore((state) => state.activateWidget);
 

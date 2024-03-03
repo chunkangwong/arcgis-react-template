@@ -39,3 +39,17 @@ export const useWidgetStore = create<State & Actions>()((set) => ({
       return state;
     }),
 }));
+
+export const selectWidgetsBySearchTerm = (state: State, searchTerm: string) => {
+  const widgets = Object.values(state.widgets).map((widget) => ({
+    label: widget.title,
+    value: widget.id,
+    description: widget.description,
+  }));
+  if (!searchTerm) {
+    return widgets;
+  }
+  return widgets.filter((widget) =>
+    widget.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+};
