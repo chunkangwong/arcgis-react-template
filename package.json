@@ -19,7 +19,6 @@
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "cmdk": "^0.2.1",
     "immer": "^10.0.3",
     "lucide-react": "^0.344.0",
     "next-themes": "^0.2.1",

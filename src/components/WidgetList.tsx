@@ -22,10 +22,10 @@ export const WidgetList = ({ searchTerm }: WidgetListProps) => {
 
   return (
     <SearchList
-      emptyText="No widgets found"
       icon={Settings}
       searchList={widgetList}
       onSelect={handleSelect}
+      emptyText="No widgets found"
     />
   );
 };

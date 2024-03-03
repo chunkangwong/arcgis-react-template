@@ -1,32 +1,41 @@
 import { useDebounce } from "@uidotdev/usehooks";
 import { useState } from "react";
 
+import { useSearchHotkey } from "@/hooks/useSearchHotkey";
+import { Search } from "lucide-react";
 import { PortalItemList } from "./PortalItemList";
 import { WidgetList } from "./WidgetList";
-import { Command, CommandDialog, CommandInput } from "./ui/command";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 interface SearchDialogProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
+  children: React.ReactNode;
 }
 
-export const SearchDialog = ({ open, setOpen }: SearchDialogProps) => {
+export const SearchDialog = ({ children }: SearchDialogProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const handleChange = (newValue: string) => {
-    setSearchTerm(newValue);
+  const { open, setOpen } = useSearchHotkey();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen}>
-      <Command shouldFilter={false}>
-        <CommandInput
-          placeholder="Search"
-          value={searchTerm}
-          onValueChange={handleChange}
-        />
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="p-0">
+        <div className="flex items-center border-b px-3">
+          <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+          <Input
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleChange}
+            className="border-0"
+          />
+        </div>
         <Tabs defaultValue="places">
           <TabsList className="w-full">
             <TabsTrigger value="places">Places</TabsTrigger>
@@ -43,7 +52,7 @@ export const SearchDialog = ({ open, setOpen }: SearchDialogProps) => {
             <WidgetList searchTerm={debouncedSearchTerm} />
           </TabsContent>
         </Tabs>
-      </Command>
-    </CommandDialog>
+      </DialogContent>
+    </Dialog>
   );
 };
