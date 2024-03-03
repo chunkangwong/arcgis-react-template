@@ -27,7 +27,7 @@ export const SearchList = ({
         <li
           className="group cursor-pointer flex items-center rounded-sm px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
           key={searchItem.value}
-          onSelect={handleSelect(searchItem.value)} // Not using 'value' prop here as it does not register capital letters
+          onClick={handleSelect(searchItem.value)}
         >
           <Icon className="mr-2 h-4 w-4" />
           <span className="group-hover:underline">{searchItem.label}</span>

@@ -10,5 +10,5 @@ export const Map = () => {
     }
   }, []);
 
-  return <div className="h-full" ref={viewDivRef}></div>;
+  return <div className="h-full w-full" ref={viewDivRef}></div>;
 };

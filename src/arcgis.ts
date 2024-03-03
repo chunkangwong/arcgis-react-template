@@ -15,6 +15,8 @@ export const view = new MapView({
   zoom: 13,
 });
 
+view.ui.move("zoom", "bottom-right");
+
 export const portal = new Portal({
   authMode: "immediate",
 });
