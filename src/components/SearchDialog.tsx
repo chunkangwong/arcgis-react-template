@@ -23,6 +23,8 @@ export const SearchDialog = ({ children }: SearchDialogProps) => {
     setSearchTerm(e.target.value);
   };
 
+  const handleClose = () => setOpen(false);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -46,10 +48,16 @@ export const SearchDialog = ({ children }: SearchDialogProps) => {
             Make changes to your account here.
           </TabsContent>
           <TabsContent value="portalItems">
-            <PortalItemList searchTerm={debouncedSearchTerm} />
+            <PortalItemList
+              searchTerm={debouncedSearchTerm}
+              onClose={handleClose}
+            />
           </TabsContent>
           <TabsContent value="widgets">
-            <WidgetList searchTerm={debouncedSearchTerm} />
+            <WidgetList
+              searchTerm={debouncedSearchTerm}
+              onClose={handleClose}
+            />
           </TabsContent>
         </Tabs>
       </DialogContent>

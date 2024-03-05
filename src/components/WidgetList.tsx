@@ -8,16 +8,18 @@ import { SearchList } from "./SearchList";
 
 interface WidgetListProps {
   searchTerm: string;
+  onClose: () => void;
 }
 
-export const WidgetList = ({ searchTerm }: WidgetListProps) => {
+export const WidgetList = ({ searchTerm, onClose }: WidgetListProps) => {
   const widgetList = useWidgetStore((state) =>
-    selectWidgetsBySearchTerm(state, searchTerm)
+    selectWidgetsBySearchTerm(state, searchTerm),
   );
   const activateWidget = useWidgetStore((state) => state.activateWidget);
 
   const handleSelect = (widgetId: string) => {
     activateWidget(widgetId);
+    onClose();
   };
 
   return (

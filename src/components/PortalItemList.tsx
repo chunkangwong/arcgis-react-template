@@ -9,9 +9,13 @@ import { Button } from "./ui/button";
 
 interface PortalItemListProps {
   searchTerm: string;
+  onClose: () => void;
 }
 
-export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
+export const PortalItemList = ({
+  searchTerm,
+  onClose,
+}: PortalItemListProps) => {
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } =
     useQueryPortalItems({
       searchTerm,
@@ -46,6 +50,8 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
     } catch (error) {
       console.error(error);
       toast.error("Error adding layer");
+    } finally {
+      onClose();
     }
   };
 

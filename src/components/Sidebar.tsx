@@ -7,7 +7,7 @@ export const Sidebar = () => {
 
   const Widget = useMemo(
     () => lazy(() => import(`../widgets/${dockedWidget?.id}/index.ts`)),
-    [],
+    [dockedWidget],
   );
 
   return (

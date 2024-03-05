@@ -40,7 +40,7 @@ export const HelloWorld = () => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Hello World</FormLabel>
+              <FormLabel>Hello World 2</FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
