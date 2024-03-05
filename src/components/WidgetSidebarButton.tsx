@@ -1,6 +1,8 @@
 import { X } from "lucide-react";
-import { Button } from "./ui/button";
+
 import { useWidgetStore } from "@/store/useWidgetStore";
+import { Tooltip } from "./Tooltip";
+import { Button } from "./ui/button";
 
 interface WidgetSidebarButtonProps {
   widgetId: string;
@@ -23,18 +25,20 @@ export const WidgetSidebarButton = ({
   };
 
   return (
-    <Button
-      className="group relative h-8 w-8 text-xs capitalize"
-      onClick={handleClick}
-    >
-      <X
-        className="absolute -right-2 -top-2 h-4 w-4 cursor-pointer rounded-full bg-red-500 text-white opacity-0 transition-opacity group-hover:opacity-100"
-        onClick={handleXClick}
-      />
-      {title
-        .split(" ")
-        .map((word) => word[0])
-        .join("")}
-    </Button>
+    <Tooltip title={title} side="right">
+      <Button
+        className="group relative h-8 w-8 text-xs capitalize"
+        onClick={handleClick}
+      >
+        <X
+          className="absolute -left-2 -top-2 h-4 w-4 cursor-pointer rounded-full bg-red-500 text-white opacity-0 transition-opacity group-hover:opacity-100"
+          onClick={handleXClick}
+        />
+        {title
+          .split(" ")
+          .map((word) => word[0])
+          .join("")}
+      </Button>
+    </Tooltip>
   );
 };

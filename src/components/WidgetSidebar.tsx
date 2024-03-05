@@ -10,7 +10,7 @@ export const WidgetSidebar = () => {
         <WidgetSidebarButton
           key={widget.id}
           widgetId={widget.id}
-          title="Hello World"
+          title={widget.title}
         />
       ))}
     </div>
