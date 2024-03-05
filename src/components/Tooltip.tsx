@@ -14,7 +14,7 @@ interface TooltipProps {
 export const Tooltip = ({ children, title, side = "bottom" }: TooltipProps) => {
   return (
     <TooltipProvider>
-      <ShadcnTooltip>
+      <ShadcnTooltip disableHoverableContent>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent side={side}>{title}</TooltipContent>
       </ShadcnTooltip>

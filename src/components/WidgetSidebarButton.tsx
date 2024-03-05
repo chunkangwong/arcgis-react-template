@@ -31,7 +31,7 @@ export const WidgetSidebarButton = ({
         onClick={handleClick}
       >
         <X
-          className="absolute -left-2 -top-2 h-4 w-4 cursor-pointer rounded-full bg-red-500 text-white opacity-0 transition-opacity group-hover:opacity-100"
+          className="absolute -left-2 -top-2 h-4 w-4 cursor-pointer rounded-full bg-red-400 text-white opacity-0 transition-opacity group-hover:opacity-100"
           onClick={handleXClick}
         />
         {title
