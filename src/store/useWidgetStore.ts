@@ -29,13 +29,13 @@ export const useWidgetStore = create<State & Actions>()(
           title: widget.title,
           id: widget.id,
           description: widget.description,
-          active: widget.id === "HelloWorld", // TODO: Remove hardcoded active widget
+          active: false,
         };
         return acc;
       },
       {} as Record<string, Widget>,
     ),
-    dockedWidgetId: "HelloWorld", // TODO: Remove hardcoded docked widget
+    dockedWidgetId: "",
     activateWidget: (id: string) =>
       set((state) => {
         state.widgets[id].active = true;
