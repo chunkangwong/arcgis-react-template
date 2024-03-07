@@ -18,7 +18,7 @@ export const SidebarOpenCloseButton = () => {
       <Button className="h-8 w-8" size="icon" onClick={handleClick}>
         <ChevronsLeft
           className={cn(
-            "h-4 w-4 transition-transform",
+            "h-4 w-4 transition-transform duration-500",
             sidebarOpen ? "rotate-180 transform" : "",
           )}
         />

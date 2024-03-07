@@ -1,5 +1,7 @@
 import { X } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+import { useLayoutStore } from "@/store/useLayoutStore";
 import {
   selectActiveWidgets,
   selectDockedWidget,
@@ -14,6 +16,7 @@ export const Sidebar = () => {
   const dockedWidget = useWidgetStore(selectDockedWidget);
   const activeWidgets = useWidgetStore(selectActiveWidgets);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);
+  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
 
   const handleXClick = () => {
     if (dockedWidget) {
@@ -22,7 +25,12 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="flex h-full w-[32rem] flex-col gap-y-4 bg-gray-100 p-4">
+    <div
+      className={cn(
+        "flex h-full w-[32rem] transform flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4 transition-transform duration-500",
+        sidebarOpen ? "translate-x-0" : "-translate-x-full",
+      )}
+    >
       <SearchButton fullWidth />
       <div className="group flex items-center justify-between border-b-2">
         <p className="text-2xl">{dockedWidget?.title}</p>

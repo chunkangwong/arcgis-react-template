@@ -1,4 +1,4 @@
-import { Map } from "./components/Map";
+import { MapWrapper } from "./components/MapWrapper";
 import { SearchButton } from "./components/SearchButton";
 import { Sidebar } from "./components/Sidebar";
 import { WidgetSidebar } from "./components/WidgetSidebar";
@@ -35,7 +35,7 @@ const App = () => {
     <InnerApp
       widgetSidebar={<WidgetSidebar />}
       sidebar={<Sidebar />}
-      map={<Map />}
+      map={<MapWrapper />}
       searchButton={<SearchButton asMapWidget />}
       toaster={<Toaster />}
     />

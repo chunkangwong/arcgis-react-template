@@ -6,7 +6,7 @@ export const WidgetSidebar = () => {
   const activeWidgets = useWidgetStore(selectActiveWidgets);
 
   return (
-    <div className="flex h-full w-16 flex-col gap-y-4 border-r-2 bg-gray-100 p-4">
+    <div className="z-10 flex h-full w-16 flex-col gap-y-4 border-r-2 bg-gray-100 p-4">
       <SidebarOpenCloseButton />
       {activeWidgets.map((widget) => (
         <WidgetSidebarButton
