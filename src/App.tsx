@@ -4,16 +4,42 @@ import { Sidebar } from "./components/Sidebar";
 import { WidgetSidebar } from "./components/WidgetSidebar";
 import { Toaster } from "./components/ui/sonner";
 
-function App() {
+interface AppProps {
+  widgetSidebar: React.ReactNode;
+  sidebar: React.ReactNode;
+  map: React.ReactNode;
+  searchButton: React.ReactNode;
+  toaster: React.ReactNode;
+}
+
+function InnerApp({
+  widgetSidebar,
+  sidebar,
+  map,
+  searchButton,
+  toaster,
+}: AppProps) {
   return (
     <div className="flex h-full w-full">
-      <WidgetSidebar />
-      <Sidebar />
-      <Map />
-      <SearchButton asMapWidget />
-      <Toaster />
+      {widgetSidebar}
+      {sidebar}
+      {map}
+      {searchButton}
+      {toaster}
     </div>
   );
 }
+
+const App = () => {
+  return (
+    <InnerApp
+      widgetSidebar={<WidgetSidebar />}
+      sidebar={<Sidebar />}
+      map={<Map />}
+      searchButton={<SearchButton asMapWidget />}
+      toaster={<Toaster />}
+    />
+  );
+};
 
 export default App;
