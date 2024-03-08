@@ -5,6 +5,7 @@ import {
   useWidgetStore,
 } from "@/store/useWidgetStore";
 import { SearchList } from "./SearchList";
+import { useMemo } from "react";
 
 interface WidgetListProps {
   searchTerm: string;
@@ -12,8 +13,9 @@ interface WidgetListProps {
 }
 
 export const WidgetList = ({ searchTerm, onClose }: WidgetListProps) => {
-  const widgetList = useWidgetStore((state) =>
-    selectWidgetsBySearchTerm(state, searchTerm),
+  const widgetList = useMemo(
+    () => selectWidgetsBySearchTerm(searchTerm),
+    [searchTerm],
   );
   const activateWidget = useWidgetStore((state) => state.activateWidget);
 

@@ -3,16 +3,8 @@ import { immer } from "zustand/middleware/immer";
 
 import widgetsConfig from "@/config/widgets.config.json";
 
-type Widget = {
-  title: string;
-  id: string;
-  description: string;
-  active: boolean;
-};
-
 type State = {
-  widgets: Record<string, Widget>;
-  dockedWidgetId: string | null;
+  activeWidgetIds: string[];
 };
 
 type Actions = {
@@ -21,60 +13,57 @@ type Actions = {
   dockWidget: (id: string) => void;
 };
 
+type Widget = (typeof widgetsConfig)[number];
+
+const widgets = widgetsConfig.reduce(
+  (acc, curr) => ({
+    ...acc,
+    [curr.id]: curr,
+  }),
+  {} as Record<string, Widget>,
+);
+
 export const useWidgetStore = create<State & Actions>()(
   immer((set) => ({
-    widgets: widgetsConfig.reduce(
-      (acc, widget) => {
-        acc[widget.id] = {
-          title: widget.title,
-          id: widget.id,
-          description: widget.description,
-          active: false,
-        };
-        return acc;
-      },
-      {} as Record<string, Widget>,
-    ),
-    dockedWidgetId: "",
+    activeWidgetIds: [],
     activateWidget: (id: string) =>
       set((state) => {
-        state.widgets[id].active = true;
-        state.dockedWidgetId = id;
+        state.activeWidgetIds.push(id);
       }),
     deactivateWidget: (id: string) =>
       set((state) => {
-        state.widgets[id].active = false;
-        for (const widget of Object.values(state.widgets)) {
-          if (widget.active) {
-            state.dockedWidgetId = widget.id;
-            return;
-          }
-        }
-        state.dockedWidgetId = null;
+        state.activeWidgetIds = state.activeWidgetIds.filter(
+          (activeId) => activeId !== id,
+        );
       }),
     dockWidget: (id: string) =>
       set((state) => {
-        state.dockedWidgetId = id;
+        state.activeWidgetIds = state.activeWidgetIds.filter(
+          (activeId) => activeId !== id,
+        );
+        state.activeWidgetIds.push(id);
       }),
   })),
 );
 
 export const selectActiveWidgets = (state: State) =>
-  Object.values(state.widgets).filter((widget) => widget.active);
+  state.activeWidgetIds.map((id) => widgets[id]);
 
 export const selectDockedWidget = (state: State) =>
-  state.dockedWidgetId ? state.widgets[state.dockedWidgetId] : null;
+  state.activeWidgetIds.length > 0
+    ? widgets[state.activeWidgetIds[state.activeWidgetIds.length - 1]]
+    : null;
 
-export const selectWidgetsBySearchTerm = (state: State, searchTerm: string) => {
-  const widgets = Object.values(state.widgets).map((widget) => ({
+export const selectWidgetsBySearchTerm = (searchTerm: string) => {
+  let widgets = widgetsConfig;
+  if (searchTerm) {
+    widgets = widgets.filter((widget) =>
+      widget.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }
+  return widgets.map((widget) => ({
     label: widget.title,
     value: widget.id,
     description: widget.description,
   }));
-  if (!searchTerm) {
-    return widgets;
-  }
-  return widgets.filter((widget) =>
-    widget.label.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
 };
