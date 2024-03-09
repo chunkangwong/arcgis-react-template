@@ -6,7 +6,7 @@ interface WidgetRendererProps {
 
 export const WidgetRenderer = ({ widgetId }: WidgetRendererProps) => {
   const Widget = useMemo(
-    () => lazy(() => import(`../widgets/${widgetId}/index.ts`)),
+    () => lazy(() => import(`../../widgets/${widgetId}/index.ts`)),
     [],
   );
 
