@@ -4,22 +4,22 @@ import { toast } from "sonner";
 
 import { map } from "@/arcgis";
 import { useQueryPortalItems } from "@/hooks/useQueryPortalItems";
+import { useLayoutStore } from "@/store/useLayoutStore";
 import { Button } from "../ui/button";
 import { SearchList } from "./SearchList";
 
 interface PortalItemListProps {
   searchTerm: string;
-  onClose: () => void;
 }
 
-export const PortalItemList = ({
-  searchTerm,
-  onClose,
-}: PortalItemListProps) => {
+export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } =
     useQueryPortalItems({
       searchTerm,
     });
+  const setSearchDialogOpen = useLayoutStore(
+    (state) => state.setSearchDialogOpen,
+  );
 
   const handleClick = () => {
     fetchNextPage();
@@ -51,7 +51,7 @@ export const PortalItemList = ({
       console.error(error);
       toast.error("Error adding layer");
     } finally {
-      onClose();
+      setSearchDialogOpen(false);
     }
   };
 

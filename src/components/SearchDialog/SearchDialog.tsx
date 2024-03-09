@@ -25,8 +25,6 @@ export const SearchDialog = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleClose = () => setSearchDialogOpen(false);
-
   return (
     <Dialog open={searchDialogOpen} onOpenChange={setSearchDialogOpen}>
       <DialogContent className="p-0">
@@ -49,16 +47,10 @@ export const SearchDialog = () => {
             Make changes to your account here.
           </TabsContent>
           <TabsContent value="portalItems">
-            <PortalItemList
-              searchTerm={debouncedSearchTerm}
-              onClose={handleClose}
-            />
+            <PortalItemList searchTerm={debouncedSearchTerm} />
           </TabsContent>
           <TabsContent value="widgets">
-            <WidgetList
-              searchTerm={debouncedSearchTerm}
-              onClose={handleClose}
-            />
+            <WidgetList searchTerm={debouncedSearchTerm} />
           </TabsContent>
         </Tabs>
       </DialogContent>

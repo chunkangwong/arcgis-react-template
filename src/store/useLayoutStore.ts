@@ -8,6 +8,7 @@ type State = {
 
 type Actions = {
   toggleSidebar: () => void;
+  openSidebar: () => void;
   setSearchDialogOpen: (open: boolean) => void;
 };
 
@@ -18,6 +19,10 @@ export const useLayoutStore = create<State & Actions>()(
     toggleSidebar: () =>
       set((state) => {
         state.sidebarOpen = !state.sidebarOpen;
+      }),
+    openSidebar: () =>
+      set((state) => {
+        state.sidebarOpen = true;
       }),
     setSearchDialogOpen: (open) =>
       set((state) => {
