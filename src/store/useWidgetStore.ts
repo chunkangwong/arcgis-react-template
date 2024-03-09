@@ -10,7 +10,7 @@ type State = {
 type Actions = {
   activateWidget: (id: string) => void;
   deactivateWidget: (id: string) => void;
-  dockWidget: (id: string) => void;
+  dockWidget: (index: number) => void;
 };
 
 type Widget = (typeof widgetsConfig)[number];
@@ -36,11 +36,10 @@ export const useWidgetStore = create<State & Actions>()(
           (activeId) => activeId !== id,
         );
       }),
-    dockWidget: (id: string) =>
+    dockWidget: (index: number) =>
       set((state) => {
-        state.activeWidgetIds = state.activeWidgetIds.filter(
-          (activeId) => activeId !== id,
-        );
+        const id = state.activeWidgetIds[index];
+        state.activeWidgetIds.splice(index, 1);
         state.activeWidgetIds.push(id);
       }),
   })),

@@ -7,17 +7,19 @@ import { Button } from "./ui/button";
 interface WidgetSidebarButtonProps {
   widgetId: string;
   title: string;
+  index: number;
 }
 
 export const WidgetSidebarButton = ({
   title,
   widgetId,
+  index,
 }: WidgetSidebarButtonProps) => {
   const dockWidget = useWidgetStore((state) => state.dockWidget);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);
 
   const handleClick = () => {
-    dockWidget(widgetId);
+    dockWidget(index);
   };
 
   const handleXClick = () => {
