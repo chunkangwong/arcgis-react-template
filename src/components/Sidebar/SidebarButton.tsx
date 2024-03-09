@@ -1,20 +1,20 @@
 import { X } from "lucide-react";
 
 import { useWidgetStore } from "@/store/useWidgetStore";
-import { Tooltip } from "./Tooltip";
-import { Button } from "./ui/button";
+import { Tooltip } from "../Tooltip";
+import { Button } from "../ui/button";
 
-interface WidgetSidebarButtonProps {
+interface SidebarButtonProps {
   widgetId: string;
   title: string;
   index: number;
 }
 
-export const WidgetSidebarButton = ({
+export const SidebarButton = ({
   title,
   widgetId,
   index,
-}: WidgetSidebarButtonProps) => {
+}: SidebarButtonProps) => {
   const dockWidget = useWidgetStore((state) => state.dockWidget);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);
 

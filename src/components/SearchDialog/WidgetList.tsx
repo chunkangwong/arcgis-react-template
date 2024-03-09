@@ -4,8 +4,8 @@ import {
   selectWidgetsBySearchTerm,
   useWidgetStore,
 } from "@/store/useWidgetStore";
-import { SearchList } from "./SearchList";
 import { useMemo } from "react";
+import { SearchList } from "./SearchList";
 
 interface WidgetListProps {
   searchTerm: string;

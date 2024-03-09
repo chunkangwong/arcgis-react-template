@@ -4,11 +4,11 @@ import { useState } from "react";
 
 import { useSearchHotkey } from "@/hooks/useSearchHotkey";
 import { useLayoutStore } from "@/store/useLayoutStore";
+import { Dialog, DialogContent } from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { PortalItemList } from "./PortalItemList";
 import { WidgetList } from "./WidgetList";
-import { Dialog, DialogContent } from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 export const SearchDialog = () => {
   const [searchTerm, setSearchTerm] = useState("");

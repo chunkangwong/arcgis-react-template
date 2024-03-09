@@ -7,12 +7,12 @@ import {
   selectDockedWidget,
   useWidgetStore,
 } from "@/store/useWidgetStore";
-import { SearchButton } from "./SearchButton";
-import { Tooltip } from "./Tooltip";
+import { SearchButton } from "../SearchButton";
+import { Tooltip } from "../Tooltip";
+import { Button } from "../ui/button";
 import { WidgetRenderer } from "./WidgetRenderer";
-import { Button } from "./ui/button";
 
-export const Sidebar = () => {
+export const WidgetPanel = () => {
   const dockedWidget = useWidgetStore(selectDockedWidget);
   const activeWidgets = useWidgetStore(selectActiveWidgets);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);

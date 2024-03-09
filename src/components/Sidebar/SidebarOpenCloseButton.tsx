@@ -2,8 +2,8 @@ import { ChevronsLeft } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useLayoutStore } from "@/store/useLayoutStore";
-import { Tooltip } from "./Tooltip";
-import { Button } from "./ui/button";
+import { Tooltip } from "../Tooltip";
+import { Button } from "../ui/button";
 
 export const SidebarOpenCloseButton = () => {
   const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
