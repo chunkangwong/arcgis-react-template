@@ -1,33 +1,34 @@
 import { useDebounce } from "@uidotdev/usehooks";
+import { Search } from "lucide-react";
 import { useState } from "react";
 
 import { useSearchHotkey } from "@/hooks/useSearchHotkey";
-import { Search } from "lucide-react";
+import { useLayoutStore } from "@/store/useLayoutStore";
 import { PortalItemList } from "./PortalItemList";
 import { WidgetList } from "./WidgetList";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
-interface SearchDialogProps {
-  children: React.ReactNode;
-}
-
-export const SearchDialog = ({ children }: SearchDialogProps) => {
+export const SearchDialog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const { open, setOpen } = useSearchHotkey();
+  const searchDialogOpen = useLayoutStore((state) => state.searchDialogOpen);
+  const setSearchDialogOpen = useLayoutStore(
+    (state) => state.setSearchDialogOpen,
+  );
+
+  useSearchHotkey();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setSearchDialogOpen(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={searchDialogOpen} onOpenChange={setSearchDialogOpen}>
       <DialogContent className="p-0">
         <div className="flex items-center border-b px-3">
           <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />

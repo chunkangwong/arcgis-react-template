@@ -1,5 +1,6 @@
 import { MapWrapper } from "./components/MapWrapper";
 import { SearchButton } from "./components/SearchButton";
+import { SearchDialog } from "./components/SearchDialog";
 import { Sidebar } from "./components/Sidebar";
 import { WidgetSidebar } from "./components/WidgetSidebar";
 import { Toaster } from "./components/ui/sonner";
@@ -10,6 +11,7 @@ interface AppProps {
   map: React.ReactNode;
   searchButton: React.ReactNode;
   toaster: React.ReactNode;
+  searchDialog: React.ReactNode;
 }
 
 function InnerApp({
@@ -18,6 +20,7 @@ function InnerApp({
   map,
   searchButton,
   toaster,
+  searchDialog,
 }: AppProps) {
   return (
     <div className="flex h-full w-full">
@@ -26,6 +29,7 @@ function InnerApp({
       {map}
       {searchButton}
       {toaster}
+      {searchDialog}
     </div>
   );
 }
@@ -38,6 +42,7 @@ const App = () => {
       map={<MapWrapper />}
       searchButton={<SearchButton asMapWidget />}
       toaster={<Toaster />}
+      searchDialog={<SearchDialog />}
     />
   );
 };

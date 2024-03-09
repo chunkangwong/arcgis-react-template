@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { useLayoutStore } from "@/store/useLayoutStore";
 
 export const useSearchHotkey = () => {
-  const [open, setOpen] = useState(false);
+  const setSearchDialogOpen = useLayoutStore(
+    (state) => state.setSearchDialogOpen,
+  );
 
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
-      if (!open && e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen(true);
+        setSearchDialogOpen(true);
       }
     };
 
@@ -17,6 +21,4 @@ export const useSearchHotkey = () => {
       document.removeEventListener("keydown", handleKeydown);
     };
   }, []);
-
-  return { open, setOpen };
 };
