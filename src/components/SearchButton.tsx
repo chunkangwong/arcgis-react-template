@@ -17,12 +17,15 @@ export const SearchButton = ({ asMapWidget, fullWidth }: SearchButtonProps) => {
   const setSearchDialogOpen = useLayoutStore(
     (state) => state.setSearchDialogOpen,
   );
+  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
 
   useEffect(() => {
-    if (ref.current && asMapWidget) {
+    if (ref.current && asMapWidget && !sidebarOpen) {
       view.ui.add(ref.current, { position: "top-left", index: 0 });
+    } else {
+      view.ui.remove(ref.current!);
     }
-  }, [asMapWidget]);
+  }, [asMapWidget, sidebarOpen]);
 
   return (
     <Button
