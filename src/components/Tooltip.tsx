@@ -7,7 +7,7 @@ import {
 
 interface TooltipProps {
   children: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   side?: "top" | "bottom" | "left" | "right";
 }
 

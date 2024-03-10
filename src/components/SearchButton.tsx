@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { view } from "@/arcgis";
 import { cn } from "@/lib/utils";
 import { useLayoutStore } from "@/store/useLayoutStore";
+import { HotkeyChip } from "./HotkeyChip";
 import { Button } from "./ui/button";
 
 interface SearchButtonProps {
@@ -39,7 +40,7 @@ export const SearchButton = ({ asMapWidget, fullWidth }: SearchButtonProps) => {
     >
       <Search className="mr-4 h-4 w-4 opacity-50" />
       Search ...
-      <kbd className="ml-auto rounded-md bg-neutral-200 px-2">⌘ K</kbd>
+      <HotkeyChip>⌘ k</HotkeyChip>
     </Button>
   );
 };
