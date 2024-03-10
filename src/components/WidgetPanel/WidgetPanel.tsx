@@ -27,7 +27,7 @@ export const WidgetPanel = () => {
   return (
     <div
       className={cn(
-        "flex h-full w-[32rem] transform transition-transform duration-500 flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4",
+        "flex h-full w-[32rem] transform transition-transform duration-300 flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4",
         !sidebarOpen && "-translate-x-full",
       )}
     >

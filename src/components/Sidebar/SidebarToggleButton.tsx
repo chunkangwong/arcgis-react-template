@@ -20,7 +20,7 @@ export const SidebarToggleButton = () => {
     <Tooltip title={<SidebarToggleButtonTooltipTitle />} side="right">
       <Button
         className={cn(
-          "h-8 w-8 opacity-0 transition-opacity duration-500",
+          "h-8 w-8 opacity-0 transition-opacity duration-300",
           activeWidgets.length > 0 && "opacity-100",
         )}
         size="icon"
@@ -28,7 +28,7 @@ export const SidebarToggleButton = () => {
       >
         <ChevronsLeft
           className={cn(
-            "h-4 w-4 transition-transform duration-500",
+            "h-4 w-4 transition-transform duration-300",
             sidebarOpen && "rotate-180 transform",
           )}
         />
