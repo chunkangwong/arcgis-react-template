@@ -2,7 +2,6 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-import { useSearchHotkey } from "@/hooks/useSearchHotkey";
 import { useLayoutStore } from "@/store/useLayoutStore";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { Input } from "../ui/input";
@@ -18,8 +17,6 @@ export const SearchDialog = () => {
   const setSearchDialogOpen = useLayoutStore(
     (state) => state.setSearchDialogOpen,
   );
-
-  useSearchHotkey();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);

@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 
-import { useLayoutStore } from "@/store/useLayoutStore";
+type UseHotKey = (key: string, ctrlKey: boolean, callback: () => void) => void;
 
-export const useSearchHotkey = () => {
-  const setSearchDialogOpen = useLayoutStore(
-    (state) => state.setSearchDialogOpen,
-  );
-
+export const useHotkey: UseHotKey = (key, ctrlKey, callback) => {
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === key) {
+        if (ctrlKey && !e.ctrlKey && !e.metaKey) return;
         e.preventDefault();
-        setSearchDialogOpen(true);
+        callback();
       }
     };
 
