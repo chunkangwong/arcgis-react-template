@@ -6,6 +6,7 @@ import { useLayoutStore } from "@/store/useLayoutStore";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { PlaceList } from "./PlaceList";
 import { PortalItemList } from "./PortalItemList";
 import { WidgetList } from "./WidgetList";
 
@@ -41,7 +42,7 @@ export const SearchDialog = () => {
             <TabsTrigger value="widgets">Widgets</TabsTrigger>
           </TabsList>
           <TabsContent value="places">
-            Make changes to your account here.
+            <PlaceList />
           </TabsContent>
           <TabsContent value="portalItems">
             <PortalItemList searchTerm={debouncedSearchTerm} />
