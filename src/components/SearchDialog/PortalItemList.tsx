@@ -2,7 +2,7 @@ import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import { Layers } from "lucide-react";
 import { toast } from "sonner";
 
-import { map } from "@/arcgis";
+import { map, view } from "@/arcgis";
 import { useQueryPortalItems } from "@/hooks/useQueryPortalItems";
 import { useLayoutStore } from "@/store/useLayoutStore";
 import { Button } from "../ui/button";
@@ -37,7 +37,7 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
     return "Type to search for portal items";
   };
 
-  const handleSelect = (value: string) => {
+  const handleSelect = async (value: string) => {
     try {
       toast.info("Adding layer...");
       const layer = new MapImageLayer({
@@ -46,6 +46,8 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
         },
       });
       map.add(layer);
+      await layer.load();
+      await view.goTo(layer.fullExtent);
       toast.success("Layer added");
     } catch (error) {
       console.error(error);
