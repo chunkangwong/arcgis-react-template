@@ -1,3 +1,4 @@
+import { arcgisUser } from "@/arcgis";
 import { useLayoutStore } from "@/store/useLayoutStore";
 import { Dialog, DialogContent } from "../ui/dialog";
 
@@ -9,7 +10,7 @@ export const ProfileDialog = () => {
 
   return (
     <Dialog open={profileDialogOpen} onOpenChange={setProfileDialogOpen}>
-      <DialogContent className="p-0"></DialogContent>
+      <DialogContent>{arcgisUser.credential.userId}</DialogContent>
     </Dialog>
   );
 };

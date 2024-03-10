@@ -1,4 +1,5 @@
 import { MapWrapper } from "./components/MapWrapper";
+import { ProfileDialog } from "./components/ProfileDialog/ProfileDialog";
 import { SearchButton } from "./components/SearchButton";
 import { SearchDialog } from "./components/SearchDialog";
 import { Sidebar } from "./components/Sidebar";
@@ -14,6 +15,7 @@ interface AppProps {
   searchButton: React.ReactNode;
   toaster: React.ReactNode;
   searchDialog: React.ReactNode;
+  profileDialog: React.ReactNode;
 }
 
 function InnerApp({
@@ -23,6 +25,7 @@ function InnerApp({
   searchButton,
   toaster,
   searchDialog,
+  profileDialog,
 }: AppProps) {
   const setSearchDialogOpen = useLayoutStore(
     (state) => state.setSearchDialogOpen,
@@ -42,6 +45,7 @@ function InnerApp({
       {searchButton}
       {toaster}
       {searchDialog}
+      {profileDialog}
     </div>
   );
 }
@@ -55,6 +59,7 @@ const App = () => {
       searchButton={<SearchButton asMapWidget />}
       toaster={<Toaster />}
       searchDialog={<SearchDialog />}
+      profileDialog={<ProfileDialog />}
     />
   );
 };

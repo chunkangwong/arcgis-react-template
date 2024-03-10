@@ -1,10 +1,20 @@
 import Map from "@arcgis/core/Map";
 import esriConfig from "@arcgis/core/config";
+import Credential from "@arcgis/core/identity/Credential";
+import esriId from "@arcgis/core/identity/IdentityManager";
+import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
 import Portal from "@arcgis/core/portal/Portal";
 import MapView from "@arcgis/core/views/MapView";
 import Home from "@arcgis/core/widgets/Home";
 
 esriConfig.apiKey = import.meta.env.VITE_ESRI_CONFIG_API_KEY;
+
+const info = new OAuthInfo({
+  appId: import.meta.env.VITE_APP_ID,
+});
+esriId.registerOAuthInfos([info]);
+
+export const portal = new Portal();
 
 export const map = new Map({
   basemap: "arcgis/topographic",
@@ -22,6 +32,18 @@ export const home = new Home();
 
 view.ui.add(home, "bottom-right");
 
-export const portal = new Portal({
-  authMode: "immediate",
-});
+export const arcgisUser = {
+  credential: new Credential(),
+  fetchCredential: async () => {
+    try {
+      arcgisUser.credential = await esriId.checkSignInStatus(
+        info.portalUrl + "/sharing",
+      );
+    } catch (error) {
+      console.error(error);
+      arcgisUser.credential = await esriId.getCredential(
+        info.portalUrl + "/sharing",
+      );
+    }
+  },
+};
