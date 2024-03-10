@@ -1,4 +1,5 @@
 import { selectActiveWidgets, useWidgetStore } from "@/store/useWidgetStore";
+import { ProfileButton } from "./ProfileButton";
 import { SidebarButton } from "./SidebarButton";
 import { SidebarOpenCloseButton } from "./SidebarOpenCloseButton";
 
@@ -16,6 +17,7 @@ export const Sidebar = () => {
           title={widget.title}
         />
       ))}
+      <ProfileButton />
     </div>
   );
 };
