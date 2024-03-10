@@ -46,7 +46,7 @@ export const useWidgetStore = create<State & Actions>()(
 );
 
 export const selectActiveWidgets = (state: State) =>
-  state.activeWidgetIds.map((id) => widgets[id]);
+  state.activeWidgetIds.filter(Boolean).map((id) => widgets[id]); // BUG: filter(Boolean) is needed when deactivating widget from SidebarButton
 
 export const selectDockedWidget = (state: State) =>
   state.activeWidgetIds.length > 0
