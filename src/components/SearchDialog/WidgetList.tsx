@@ -1,4 +1,4 @@
-import { Settings } from "lucide-react";
+import { Component } from "lucide-react";
 import { useMemo } from "react";
 
 import { useLayoutStore } from "@/store/useLayoutStore";
@@ -31,7 +31,7 @@ export const WidgetList = ({ searchTerm }: WidgetListProps) => {
 
   return (
     <SearchList
-      icon={Settings}
+      icon={Component}
       searchList={widgetList}
       onSelect={handleSelect}
       emptyText="No widgets found"
