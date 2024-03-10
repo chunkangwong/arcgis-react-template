@@ -4,7 +4,7 @@ import { SearchDialog } from "./components/SearchDialog";
 import { Sidebar } from "./components/Sidebar";
 import { WidgetPanel } from "./components/WidgetPanel";
 import { Toaster } from "./components/ui/sonner";
-import { useHotkey } from "./hooks/useSearchHotkey";
+import { useHotkey } from "./hooks/useHotkey";
 import { useLayoutStore } from "./store/useLayoutStore";
 
 interface AppProps {
