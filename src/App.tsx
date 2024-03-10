@@ -25,8 +25,10 @@ function InnerApp({
   return (
     <div className="flex h-full w-full">
       {sidebar}
-      {widgetPanel}
-      {map}
+      <main className="grow flex">
+        {widgetPanel}
+        {map}
+      </main>
       {searchButton}
       {toaster}
       {searchDialog}

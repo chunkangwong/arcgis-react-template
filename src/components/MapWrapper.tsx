@@ -10,7 +10,12 @@ const MapWrapperInner = ({ children }: MapWrapperProps) => {
   const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
 
   return (
-    <div className={cn("h-full w-full", !sidebarOpen && "-ml-[31rem]")}>
+    <div
+      className={cn(
+        "h-full w-full transform duration-500",
+        sidebarOpen ? "ml-0" : "-ml-[32rem]",
+      )}
+    >
       {children}
     </div>
   );
