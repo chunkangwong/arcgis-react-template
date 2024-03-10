@@ -2,6 +2,7 @@ import { ChevronsLeft } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useLayoutStore } from "@/store/useLayoutStore";
+import { selectActiveWidgets, useWidgetStore } from "@/store/useWidgetStore";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 import { SidebarToggleButtonTooltipTitle } from "./SidebarToggleButtonTooltipTitle";
@@ -9,6 +10,7 @@ import { SidebarToggleButtonTooltipTitle } from "./SidebarToggleButtonTooltipTit
 export const SidebarToggleButton = () => {
   const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
   const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
+  const activeWidgets = useWidgetStore(selectActiveWidgets);
 
   const handleClick = () => {
     toggleSidebar();
@@ -16,7 +18,14 @@ export const SidebarToggleButton = () => {
 
   return (
     <Tooltip title={<SidebarToggleButtonTooltipTitle />} side="right">
-      <Button className="h-8 w-8" size="icon" onClick={handleClick}>
+      <Button
+        className={cn(
+          "h-8 w-8 opacity-0 transition-opacity duration-500",
+          activeWidgets.length > 0 && "opacity-100",
+        )}
+        size="icon"
+        onClick={handleClick}
+      >
         <ChevronsLeft
           className={cn(
             "h-4 w-4 transition-transform duration-500",
