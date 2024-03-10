@@ -1,0 +1,55 @@
+import esriId from "@arcgis/core/identity/IdentityManager";
+
+import { Button } from "../ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+
+interface ConfirmSignOutDialogProps {
+  children: React.ReactNode;
+}
+
+export const ConfirmSignOutDialog = ({
+  children,
+}: ConfirmSignOutDialogProps) => {
+  const handleSignOut = () => {
+    esriId.destroyCredentials();
+    window.location.reload();
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Sign Out</DialogTitle>
+          <DialogDescription>
+            Are you sure you want to sign out?
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline" size="sm">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button
+            variant="destructive"
+            className="mr-auto"
+            size="sm"
+            onClick={handleSignOut}
+          >
+            Confirm
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+};
