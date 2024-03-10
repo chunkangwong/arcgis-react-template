@@ -9,8 +9,9 @@ import Home from "@arcgis/core/widgets/Home";
 
 esriConfig.apiKey = import.meta.env.VITE_ESRI_CONFIG_API_KEY;
 
-const info = new OAuthInfo({
+export const info = new OAuthInfo({
   appId: import.meta.env.VITE_APP_ID,
+  portalUrl: import.meta.env.VITE_PORTAL_URL,
 });
 esriId.registerOAuthInfos([info]);
 

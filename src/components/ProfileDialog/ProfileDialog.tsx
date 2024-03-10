@@ -1,7 +1,7 @@
 import esriId from "@arcgis/core/identity/IdentityManager";
 import { ArrowUpRightFromSquare } from "lucide-react";
 
-import { arcgisUser } from "@/arcgis";
+import { arcgisUser, info } from "@/arcgis";
 import { useLayoutStore } from "@/store/useLayoutStore";
 import { Button } from "../ui/button";
 import {
@@ -38,9 +38,11 @@ export const ProfileDialog = () => {
           >
             Sign Out
           </Button>
-          <Button variant="outline" className="flex gap-x-2">
-            <ArrowUpRightFromSquare className="h-4 w-4" />
-            Go to Profile
+          <Button variant="outline">
+            <a href={info.portalUrl} target="_blank" className="flex gap-x-2">
+              <ArrowUpRightFromSquare className="h-4 w-4" />
+              Go to Portal
+            </a>
           </Button>
         </DialogFooter>
       </DialogContent>
