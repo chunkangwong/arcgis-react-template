@@ -2,7 +2,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { Tab, useLayoutStore } from "@/store/useLayoutStore";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
@@ -14,13 +14,22 @@ export const SearchDialog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const searchDialogOpen = useLayoutStore((state) => state.searchDialogOpen);
+  const { open: searchDialogOpen, tab: searchDialogTab } = useLayoutStore(
+    (state) => state.searchDialog,
+  );
   const setSearchDialogOpen = useLayoutStore(
     (state) => state.setSearchDialogOpen,
+  );
+  const setSearchDialogTab = useLayoutStore(
+    (state) => state.setSearchDialogTab,
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleTabChange = (tab: string) => {
+    setSearchDialogTab(tab as Tab);
   };
 
   return (
@@ -35,7 +44,7 @@ export const SearchDialog = () => {
             className="border-0"
           />
         </div>
-        <Tabs defaultValue="places">
+        <Tabs value={searchDialogTab} onValueChange={handleTabChange}>
           <TabsList className="w-full">
             <TabsTrigger value="places">Places</TabsTrigger>
             <TabsTrigger value="portalItems">Portal Items</TabsTrigger>
