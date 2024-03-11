@@ -11,8 +11,12 @@ import { PortalItemList } from "./PortalItemList";
 import { WidgetList } from "./WidgetList";
 
 export const SearchDialog = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [searchTerms, setSearchTerms] = useState<Record<Tab, string>>({
+    places: "",
+    portalItems: "",
+    widgets: "",
+  });
+  const debouncedSearchTerms = useDebounce(searchTerms, 500);
 
   const open = useSearchDialogStore((state) => state.open);
   const tab = useSearchDialogStore((state) => state.tab);
@@ -25,7 +29,10 @@ export const SearchDialog = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    setSearchTerms({
+      ...searchTerms,
+      [tab]: e.target.value,
+    });
   };
 
   const handleTabChange = (tab: string) => {
@@ -39,7 +46,7 @@ export const SearchDialog = () => {
           <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
           <Input
             placeholder="Search"
-            value={searchTerm}
+            value={searchTerms[tab]}
             onChange={handleChange}
             className="border-0"
           />
@@ -51,13 +58,13 @@ export const SearchDialog = () => {
             <TabsTrigger value="widgets">Widgets</TabsTrigger>
           </TabsList>
           <TabsContent value="places">
-            <PlaceList searchTerm={debouncedSearchTerm} />
+            <PlaceList searchTerm={debouncedSearchTerms["places"]} />
           </TabsContent>
           <TabsContent value="portalItems">
-            <PortalItemList searchTerm={debouncedSearchTerm} />
+            <PortalItemList searchTerm={debouncedSearchTerms["portalItems"]} />
           </TabsContent>
           <TabsContent value="widgets">
-            <WidgetList searchTerm={debouncedSearchTerm} />
+            <WidgetList searchTerm={debouncedSearchTerms["widgets"]} />
           </TabsContent>
         </Tabs>
       </DialogContent>
