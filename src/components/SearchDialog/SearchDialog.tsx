@@ -50,7 +50,7 @@ export const SearchDialog = () => {
             <TabsTrigger value="widgets">Widgets</TabsTrigger>
           </TabsList>
           <TabsContent value="places">
-            <PlaceList />
+            <PlaceList searchTerm={debouncedSearchTerm} />
           </TabsContent>
           <TabsContent value="portalItems">
             <PortalItemList searchTerm={debouncedSearchTerm} />
