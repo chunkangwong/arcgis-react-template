@@ -5,7 +5,7 @@ import { HelpHoverCard } from "./HelpHoverCard";
 interface SearchListProps {
   icon: LucideIcon;
   emptyText: string;
-  searchList: { label: string; value: string; description: string }[];
+  searchList: { label: string; value: string; description?: string }[];
   moreButton?: React.ReactNode;
   onSelect: (value: string) => void;
 }
@@ -31,9 +31,11 @@ export const SearchList = ({
         >
           <Icon className="mr-2 h-4 w-4" />
           <span className="group-hover:underline">{searchItem.label}</span>
-          <HelpHoverCard text={searchItem.description}>
-            <HelpCircle className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-50 cursor-help" />
-          </HelpHoverCard>
+          {searchItem.description && (
+            <HelpHoverCard text={searchItem.description}>
+              <HelpCircle className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-50 cursor-help" />
+            </HelpHoverCard>
+          )}
         </li>
       ))}
       {searchList.length === 0 && (
