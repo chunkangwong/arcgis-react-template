@@ -17,23 +17,22 @@ export const SearchDialog = () => {
   const { open: searchDialogOpen, tab: searchDialogTab } = useLayoutStore(
     (state) => state.searchDialog,
   );
-  const setSearchDialogOpen = useLayoutStore(
-    (state) => state.setSearchDialogOpen,
-  );
-  const setSearchDialogTab = useLayoutStore(
-    (state) => state.setSearchDialogTab,
-  );
+  const setSearchDialog = useLayoutStore((state) => state.setSearchDialog);
+
+  const handleOpenChange = (open: boolean) => {
+    setSearchDialog({ open });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
   const handleTabChange = (tab: string) => {
-    setSearchDialogTab(tab as Tab);
+    setSearchDialog({ tab: tab as Tab });
   };
 
   return (
-    <Dialog open={searchDialogOpen} onOpenChange={setSearchDialogOpen}>
+    <Dialog open={searchDialogOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="p-0">
         <div className="flex items-center border-b px-3">
           <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />

@@ -3,21 +3,26 @@ import { useEffect, useRef } from "react";
 
 import { view } from "@/arcgis";
 import { cn } from "@/lib/utils";
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { Tab, useLayoutStore } from "@/store/useLayoutStore";
 import { HotkeyChip } from "./HotkeyChip";
 import { Button } from "./ui/button";
 
 interface SearchButtonProps {
   asMapWidget?: boolean;
   fullWidth?: boolean;
+  label?: string;
+  tabToOpen?: Tab;
 }
 
-export const SearchButton = ({ asMapWidget, fullWidth }: SearchButtonProps) => {
+export const SearchButton = ({
+  asMapWidget,
+  fullWidth,
+  label,
+  tabToOpen,
+}: SearchButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
-  const setSearchDialogOpen = useLayoutStore(
-    (state) => state.setSearchDialogOpen,
-  );
+  const setSearchDialog = useLayoutStore((state) => state.setSearchDialog);
   const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
 
   useEffect(() => {
@@ -28,6 +33,10 @@ export const SearchButton = ({ asMapWidget, fullWidth }: SearchButtonProps) => {
     }
   }, [asMapWidget, sidebarOpen]);
 
+  const handleClick = () => {
+    setSearchDialog({ open: true, tab: tabToOpen });
+  };
+
   return (
     <Button
       variant="outline"
@@ -36,10 +45,10 @@ export const SearchButton = ({ asMapWidget, fullWidth }: SearchButtonProps) => {
         "flex  justify-start text-muted-foreground",
         fullWidth ? "w-full" : "w-[16rem]",
       )}
-      onClick={() => setSearchDialogOpen(true)}
+      onClick={handleClick}
     >
       <Search className="mr-4 h-4 w-4 opacity-50" />
-      Search ...
+      {label ?? "Search ..."}
       <HotkeyChip>⌘ k</HotkeyChip>
     </Button>
   );

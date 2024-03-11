@@ -16,7 +16,7 @@ type Actions = {
   toggleSidebar: () => void;
   openSidebar: () => void;
   setSearchDialogOpen: (open: boolean) => void;
-  setSearchDialogTab: (tab: Tab) => void;
+  setSearchDialog: ({ open, tab }: { open?: boolean; tab?: Tab }) => void;
   setProfileDialogOpen: (open: boolean) => void;
 };
 
@@ -40,9 +40,14 @@ export const useLayoutStore = create<State & Actions>()(
       set((state) => {
         state.searchDialog.open = open;
       }),
-    setSearchDialogTab: (tab) =>
+    setSearchDialog: ({ open, tab }) =>
       set((state) => {
-        state.searchDialog.tab = tab;
+        if (open !== undefined) {
+          state.searchDialog.open = open;
+        }
+        if (tab !== undefined) {
+          state.searchDialog.tab = tab;
+        }
       }),
     setProfileDialogOpen: (open) =>
       set((state) => {
