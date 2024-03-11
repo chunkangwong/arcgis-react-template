@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { map, view } from "@/arcgis";
 import { useQueryPortalItems } from "@/hooks/useQueryPortalItems";
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSearchDialogStore } from "@/store/useSearchDialogStore";
 import { Button } from "../ui/button";
 import { SearchList } from "./SearchList";
 
@@ -17,7 +17,7 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
     useQueryPortalItems({
       searchTerm,
     });
-  const setSearchDialogOpen = useLayoutStore(
+  const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
 

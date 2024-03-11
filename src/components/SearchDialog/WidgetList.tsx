@@ -2,6 +2,7 @@ import { Component } from "lucide-react";
 import { useMemo } from "react";
 
 import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSearchDialogStore } from "@/store/useSearchDialogStore";
 import {
   selectWidgetsBySearchTerm,
   useWidgetStore,
@@ -19,7 +20,7 @@ export const WidgetList = ({ searchTerm }: WidgetListProps) => {
   );
   const activateWidget = useWidgetStore((state) => state.activateWidget);
   const openSidebar = useLayoutStore((state) => state.openSidebar);
-  const setSearchDialogOpen = useLayoutStore(
+  const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
 

@@ -7,6 +7,7 @@ import { WidgetPanel } from "./components/WidgetPanel";
 import { Toaster } from "./components/ui/sonner";
 import { useHotkey } from "./hooks/useHotkey";
 import { useLayoutStore } from "./store/useLayoutStore";
+import { useSearchDialogStore } from "./store/useSearchDialogStore";
 
 interface AppProps {
   sidebar: React.ReactNode;
@@ -27,7 +28,7 @@ function InnerApp({
   searchDialog,
   profileDialog,
 }: AppProps) {
-  const setSearchDialogOpen = useLayoutStore(
+  const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
   const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);

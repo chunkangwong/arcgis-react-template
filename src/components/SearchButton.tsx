@@ -3,7 +3,8 @@ import { useEffect, useRef } from "react";
 
 import { view } from "@/arcgis";
 import { cn } from "@/lib/utils";
-import { Tab, useLayoutStore } from "@/store/useLayoutStore";
+import { useLayoutStore } from "@/store/useLayoutStore";
+import { Tab, useSearchDialogStore } from "@/store/useSearchDialogStore";
 import { HotkeyChip } from "./HotkeyChip";
 import { Button } from "./ui/button";
 
@@ -22,7 +23,9 @@ export const SearchButton = ({
 }: SearchButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
-  const setSearchDialog = useLayoutStore((state) => state.setSearchDialog);
+  const setSearchDialog = useSearchDialogStore(
+    (state) => state.setSearchDialog,
+  );
   const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
 
   useEffect(() => {
