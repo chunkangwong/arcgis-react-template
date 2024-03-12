@@ -10,7 +10,7 @@ export const useQueryPortalItems = ({
   searchTerm,
 }: UseQueryPortalItemsProps) => {
   return useInfiniteQuery({
-    queryKey: ["queryPortalItems"],
+    queryKey: ["queryPortalItems", searchTerm],
     queryFn: async ({ pageParam }: { pageParam: number }) => {
       await portal.load();
       const result = await portal.queryItems({
@@ -31,7 +31,7 @@ export const useQueryPortalItems = ({
           label: result.title,
           value: result.id,
           description: result.description,
-        }))
+        })),
       ),
   });
 };
