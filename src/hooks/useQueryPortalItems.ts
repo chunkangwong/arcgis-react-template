@@ -14,7 +14,7 @@ export const useQueryPortalItems = ({
     queryFn: async ({ pageParam }: { pageParam: number }) => {
       await portal.load();
       const result = await portal.queryItems({
-        query: `type:Map Service AND title:${searchTerm}`,
+        query: `type:Feature Layer AND title:${searchTerm}`,
         sortField: "num-views",
         sortOrder: "desc",
         num: 10,

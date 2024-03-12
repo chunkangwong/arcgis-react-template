@@ -1,4 +1,4 @@
-import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { Layers } from "lucide-react";
 import { toast } from "sonner";
 
@@ -40,7 +40,7 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
   const handleSelect = async (value: string) => {
     try {
       toast.info("Adding layer...");
-      const layer = new MapImageLayer({
+      const layer = new FeatureLayer({
         portalItem: {
           id: value,
         },
