@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# ArcGIS Smart Mapping Template with React + TypeScript + Vite + shadcn/ui + tailwindcss + @tanstack/react-query + react-hook-form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a Vite setup with the following tech stack to start an ArcGIS Smart Mapping web application:
 
-Currently, two official plugins are available:
+- React
+- TypeScript
+- shadcn/ui
+- tailwindcss
+- @tanstack/react-query
+- react-hook-form
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
 
-## Expanding the ESLint configuration
+https://github.com/chunkangwong/arcgis-react-template/assets/86872605/bb098310-2ebd-4810-8b85-28ce7193fa60
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting started
 
-- Configure the top-level `parserOptions` property like this:
+1. Make a copy of `.env.example` and rename the copy to `.env`. Follow the comments in the file to prepare the environment variables.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. Install dependencies (this project uses [Bun](https://bun.sh/))
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   ```
+   bun install
+   ```
+
+3. Run development server
+
+   ```
+   bun run dev
+   ```
+
+4. Build for production
+
+   ```
+   bun run build
+   ```
