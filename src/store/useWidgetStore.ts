@@ -28,6 +28,7 @@ export const useWidgetStore = create<State & Actions>()(
     activeWidgetIds: [],
     activateWidget: (id: string) =>
       set((state) => {
+        if (state.activeWidgetIds.includes(id)) return;
         state.activeWidgetIds.push(id);
       }),
     deactivateWidget: (id: string) =>
