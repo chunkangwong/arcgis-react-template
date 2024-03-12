@@ -10,6 +10,12 @@ import { PlaceList } from "./PlaceList";
 import { PortalItemList } from "./PortalItemList";
 import { WidgetList } from "./WidgetList";
 
+const placeholders: Record<Tab, string> = {
+  places: "Search for places",
+  portalItems: "Search for portal items",
+  widgets: "Search for widgets",
+};
+
 export const SearchDialog = () => {
   const [searchTerms, setSearchTerms] = useState<Record<Tab, string>>({
     places: "",
@@ -45,7 +51,7 @@ export const SearchDialog = () => {
         <div className="flex items-center border-b px-3">
           <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
           <Input
-            placeholder="Search"
+            placeholder={placeholders[tab]}
             value={searchTerms[tab]}
             onChange={handleChange}
             className="border-0"

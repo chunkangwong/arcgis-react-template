@@ -30,7 +30,11 @@ export const WidgetPanel = () => {
         !sidebarOpen && "-translate-x-full",
       )}
     >
-      <SearchButton fullWidth label="Search widget..." tabToOpen="widgets" />
+      <SearchButton
+        fullWidth
+        label="Search for widget..."
+        tabToOpen="widgets"
+      />
       <div className="group flex items-center justify-between border-b-2">
         <p className="text-2xl">{dockedWidget?.title}</p>
         {dockedWidget && (
