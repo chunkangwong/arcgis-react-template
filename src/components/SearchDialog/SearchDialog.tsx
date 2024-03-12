@@ -1,7 +1,7 @@
-import { useDebounce } from "@uidotdev/usehooks";
 import { Search } from "lucide-react";
 import { useState } from "react";
 
+import { useDebounce } from "@/hooks/useDebounce";
 import { Tab, useSearchDialogStore } from "@/store/useSearchDialogStore";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { Input } from "../ui/input";
