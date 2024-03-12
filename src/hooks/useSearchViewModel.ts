@@ -39,6 +39,7 @@ export const useSearchViewModel = (searchTerm: string) => {
         label: result.name,
         value: (result.feature as any).uid, // TODO: Fix this
         description: "",
+        geometry: result.feature.geometry,
       }));
     },
     enabled: searchTerm.length > 0,
