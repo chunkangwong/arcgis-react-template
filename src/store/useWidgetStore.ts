@@ -5,6 +5,7 @@ import widgetsConfig from "@/config/widgets.config.json";
 
 type State = {
   activeWidgetIds: string[];
+  dockedWidgetId: string | null;
 };
 
 type Actions = {
@@ -26,22 +27,31 @@ const widgets = widgetsConfig.reduce(
 export const useWidgetStore = create<State & Actions>()(
   immer((set) => ({
     activeWidgetIds: [],
+    dockedWidgetId: null,
     activateWidget: (id: string) =>
       set((state) => {
         if (state.activeWidgetIds.includes(id)) return;
         state.activeWidgetIds.push(id);
+        state.dockedWidgetId = id;
       }),
     deactivateWidget: (id: string) =>
       set((state) => {
         state.activeWidgetIds = state.activeWidgetIds.filter(
           (activeId) => activeId !== id,
         );
+        if (state.dockedWidgetId !== id) return;
+        if (state.activeWidgetIds.length > 0) {
+          state.dockedWidgetId = state.activeWidgetIds[0];
+        } else {
+          state.dockedWidgetId = null;
+        }
       }),
     dockWidget: (index: number) =>
       set((state) => {
         const id = state.activeWidgetIds[index];
-        state.activeWidgetIds.splice(index, 1);
-        state.activeWidgetIds.push(id);
+        if (id) {
+          state.dockedWidgetId = id;
+        }
       }),
   })),
 );
@@ -50,9 +60,7 @@ export const selectActiveWidgets = (state: State) =>
   state.activeWidgetIds.filter(Boolean).map((id) => widgets[id]); // BUG: filter(Boolean) is needed when deactivating widget from SidebarButton
 
 export const selectDockedWidget = (state: State) =>
-  state.activeWidgetIds.length > 0
-    ? widgets[state.activeWidgetIds[state.activeWidgetIds.length - 1]]
-    : null;
+  state.dockedWidgetId ? widgets[state.dockedWidgetId] ?? null : null;
 
 export const selectWidgetsBySearchTerm = (searchTerm: string) => {
   let widgets = widgetsConfig;
