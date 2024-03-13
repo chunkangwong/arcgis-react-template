@@ -13,7 +13,7 @@ const MapWrapperInner = ({ children }: MapWrapperProps) => {
     <div
       className={cn(
         "h-full w-full transform duration-300",
-        sidebarOpen ? "ml-0" : "-ml-[32rem]",
+        sidebarOpen ? "hidden md:block ml-0" : "md:-ml-[32rem]",
       )}
     >
       {children}

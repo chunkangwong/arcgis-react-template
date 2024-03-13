@@ -26,8 +26,9 @@ export const WidgetPanel = () => {
   return (
     <div
       className={cn(
-        "flex h-full w-[32rem] transform transition-transform duration-300 flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4",
-        !sidebarOpen && "-translate-x-full",
+        "flex h-full w-full md:w-[32rem] transform transition-transform duration-300 flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4",
+        !sidebarOpen &&
+          "hidden md:block translate-y-full translate-x-0 md:translate-y-0 md:-translate-x-full",
       )}
     >
       <SearchButton
