@@ -7,7 +7,7 @@ export const Sidebar = () => {
   const activeWidgets = useWidgetStore(selectActiveWidgets);
 
   return (
-    <div className="z-10 flex h-full w-16 flex-col gap-y-4 border-r-2 bg-gray-100 p-4">
+    <div className="z-10 flex h-16 w-full flex-row md:flex-col md:h-full md:w-16 gap-4 md:border-r-2 bg-gray-100 p-4">
       <SidebarToggleButton />
       {activeWidgets.map((widget, index) => (
         <SidebarButton

@@ -37,7 +37,7 @@ function InnerApp({
   useHotkey("b", true, () => toggleSidebar());
 
   return (
-    <div className="flex h-full w-full">
+    <div className="flex flex-col-reverse md:flex-row h-full w-full">
       {sidebar}
       <main className="grow flex">
         {widgetPanel}
