@@ -6,8 +6,8 @@ import { Sidebar } from "./components/Sidebar";
 import { WidgetPanel } from "./components/WidgetPanel";
 import { Toaster } from "./components/ui/sonner";
 import { useHotkey } from "./hooks/useHotkey";
-import { useLayoutStore } from "./store/useLayoutStore";
 import { useSearchDialogStore } from "./store/useSearchDialogStore";
+import { useSidebarStore } from "./store/useSidebarStore";
 
 interface AppProps {
   sidebar: React.ReactNode;
@@ -31,7 +31,7 @@ function InnerApp({
   const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
-  const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
+  const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
 
   useHotkey("k", true, () => setSearchDialogOpen(true));
   useHotkey("b", true, () => toggleSidebar());

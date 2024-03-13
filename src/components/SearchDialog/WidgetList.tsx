@@ -1,8 +1,8 @@
 import { Component } from "lucide-react";
 import { useMemo } from "react";
 
-import { useLayoutStore } from "@/store/useLayoutStore";
 import { useSearchDialogStore } from "@/store/useSearchDialogStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import {
   selectWidgetsBySearchTerm,
   useWidgetStore,
@@ -19,7 +19,7 @@ export const WidgetList = ({ searchTerm }: WidgetListProps) => {
     [searchTerm],
   );
   const activateWidget = useWidgetStore((state) => state.activateWidget);
-  const openSidebar = useLayoutStore((state) => state.openSidebar);
+  const openSidebar = useSidebarStore((state) => state.openSidebar);
   const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );

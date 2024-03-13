@@ -1,8 +1,8 @@
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import { HotkeyChip } from "../HotkeyChip";
 
 export const SidebarToggleButtonTooltipTitle = () => {
-  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
+  const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
 
   return (
     <span className="flex gap-1">

@@ -1,15 +1,15 @@
 import { ChevronsLeft } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import { selectActiveWidgets, useWidgetStore } from "@/store/useWidgetStore";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 import { SidebarToggleButtonTooltipTitle } from "./SidebarToggleButtonTooltipTitle";
 
 export const SidebarToggleButton = () => {
-  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
-  const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
+  const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
+  const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
   const activeWidgets = useWidgetStore(selectActiveWidgets);
 
   const handleClick = () => {

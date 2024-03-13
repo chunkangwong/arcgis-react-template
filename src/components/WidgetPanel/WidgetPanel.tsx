@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import {
   selectActiveWidgets,
   selectDockedWidget,
@@ -15,7 +15,7 @@ export const WidgetPanel = () => {
   const dockedWidget = useWidgetStore(selectDockedWidget);
   const activeWidgets = useWidgetStore(selectActiveWidgets);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);
-  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
+  const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
 
   const handleXClick = () => {
     if (dockedWidget) {

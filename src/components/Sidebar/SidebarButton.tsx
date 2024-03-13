@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import { useWidgetStore } from "@/store/useWidgetStore";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
@@ -18,7 +18,7 @@ export const SidebarButton = ({
 }: SidebarButtonProps) => {
   const dockWidget = useWidgetStore((state) => state.dockWidget);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);
-  const openSidebar = useLayoutStore((state) => state.openSidebar);
+  const openSidebar = useSidebarStore((state) => state.openSidebar);
 
   const handleClick = () => {
     dockWidget(index);

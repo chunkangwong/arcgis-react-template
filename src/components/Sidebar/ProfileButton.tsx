@@ -1,11 +1,11 @@
 import { User } from "lucide-react";
 
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 
 export const ProfileButton = () => {
-  const setProfileDialogOpen = useLayoutStore(
+  const setProfileDialogOpen = useSidebarStore(
     (state) => state.setProfileDialogOpen,
   );
 

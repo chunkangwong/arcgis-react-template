@@ -12,7 +12,7 @@ type Actions = {
   setProfileDialogOpen: (open: boolean) => void;
 };
 
-export const useLayoutStore = create<State & Actions>()(
+export const useSidebarStore = create<State & Actions>()(
   immer((set) => ({
     sidebarOpen: false,
     profileDialogOpen: false,

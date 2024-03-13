@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useLayoutStore } from "@/store/useLayoutStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import { Map } from "./Map";
 
 interface MapWrapperProps {
@@ -7,7 +7,7 @@ interface MapWrapperProps {
 }
 
 const MapWrapperInner = ({ children }: MapWrapperProps) => {
-  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
+  const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
 
   return (
     <div

@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 
 import { view } from "@/arcgis";
 import { cn } from "@/lib/utils";
-import { useLayoutStore } from "@/store/useLayoutStore";
 import { Tab, useSearchDialogStore } from "@/store/useSearchDialogStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
 import { HotkeyChip } from "./HotkeyChip";
 import { Button } from "./ui/button";
 
@@ -26,7 +26,7 @@ export const SearchButton = ({
   const setSearchDialog = useSearchDialogStore(
     (state) => state.setSearchDialog,
   );
-  const sidebarOpen = useLayoutStore((state) => state.sidebarOpen);
+  const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
 
   useEffect(() => {
     if (ref.current && asMapWidget && !sidebarOpen) {
