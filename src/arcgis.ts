@@ -5,7 +5,6 @@ import esriId from "@arcgis/core/identity/IdentityManager";
 import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
 import Portal from "@arcgis/core/portal/Portal";
 import MapView from "@arcgis/core/views/MapView";
-import Home from "@arcgis/core/widgets/Home";
 
 esriConfig.apiKey = import.meta.env.VITE_ESRI_CONFIG_API_KEY;
 
@@ -28,10 +27,6 @@ export const view = new MapView({
 });
 
 view.ui.move("zoom", "bottom-right");
-
-export const home = new Home();
-
-view.ui.add(home, "bottom-right");
 
 export const arcgisUser = {
   credential: new Credential(),
