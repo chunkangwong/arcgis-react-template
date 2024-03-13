@@ -4,6 +4,8 @@ interface HotkeyChipProps {
 
 export const HotkeyChip = ({ children }: HotkeyChipProps) => {
   return (
-    <kbd className="ml-auto rounded-md bg-neutral-200 px-2">{children}</kbd>
+    <kbd className="hidden md:block ml-auto rounded-md bg-neutral-200 px-2">
+      {children}
+    </kbd>
   );
 };
