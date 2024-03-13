@@ -39,7 +39,7 @@ function InnerApp({
   return (
     <div className="flex flex-col-reverse md:flex-row h-full w-full">
       {sidebar}
-      <main className="grow flex">
+      <main className="grow flex flex-col-reverse md:flex-row">
         {widgetPanel}
         {map}
       </main>
