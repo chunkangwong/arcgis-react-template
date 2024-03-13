@@ -12,7 +12,7 @@ export const ProfileButton = () => {
   return (
     <Tooltip side="left" title="Profile">
       <Button
-        className="h-8 w-8 mt-auto"
+        className="h-8 w-8 ml-auto md:mt-auto"
         size="icon"
         onClick={() => setProfileDialogOpen(true)}
       >
