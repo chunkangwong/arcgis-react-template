@@ -1,7 +1,6 @@
 import { ArrowUpRightFromSquare } from "lucide-react";
 
 import { arcgisUser, info } from "@/arcgis";
-import { useSidebarStore } from "@/store/useSidebarStore";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -9,17 +8,18 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "../ui/dialog";
 import { ConfirmSignOutDialog } from "./ConfirmSignOutDialog";
 
-export const ProfileDialog = () => {
-  const profileDialogOpen = useSidebarStore((state) => state.profileDialogOpen);
-  const setProfileDialogOpen = useSidebarStore(
-    (state) => state.setProfileDialogOpen,
-  );
+interface ProfileDialogProps {
+  children: React.ReactNode;
+}
 
+export const ProfileDialog = ({ children }: ProfileDialogProps) => {
   return (
-    <Dialog open={profileDialogOpen} onOpenChange={setProfileDialogOpen}>
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Profile</DialogTitle>
