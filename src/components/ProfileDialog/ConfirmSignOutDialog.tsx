@@ -27,14 +27,14 @@ export const ConfirmSignOutDialog = ({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className="flex flex-col gap-y-4">
         <DialogHeader>
           <DialogTitle>Sign Out</DialogTitle>
           <DialogDescription>
             Are you sure you want to sign out?
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className="flex flex-col gap-y-4 sm:flex-row">
           <DialogClose asChild>
             <Button variant="outline" size="sm">
               Cancel
@@ -42,7 +42,7 @@ export const ConfirmSignOutDialog = ({
           </DialogClose>
           <Button
             variant="destructive"
-            className="mr-auto"
+            className="sm:mr-auto"
             size="sm"
             onClick={handleSignOut}
           >

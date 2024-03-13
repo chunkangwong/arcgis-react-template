@@ -25,9 +25,9 @@ export const ProfileDialog = () => {
           <DialogTitle>Profile</DialogTitle>
         </DialogHeader>
         <div className="py-4">{arcgisUser.credential.userId}</div>
-        <DialogFooter>
+        <DialogFooter className="flex flex-col-reverse gap-y-4 sm:flex-row">
           <ConfirmSignOutDialog>
-            <Button variant="destructive" className="mr-auto" size="sm">
+            <Button variant="destructive" className="sm:mr-auto" size="sm">
               Sign Out
             </Button>
           </ConfirmSignOutDialog>
