@@ -10,9 +10,18 @@ type Actions = {
   openSidebar: () => void;
 };
 
+const url = new URL(window.location.href);
+const searchParams = new URLSearchParams(url.search);
+const activeWidgetIds = searchParams.getAll("aw");
+const dockedWidgetId = searchParams.get("dw");
+
+const defaultSidebarOpen = Boolean(
+  dockedWidgetId && activeWidgetIds.includes(dockedWidgetId),
+);
+
 export const useSidebarStore = create<State & Actions>()(
   immer((set) => ({
-    sidebarOpen: false,
+    sidebarOpen: defaultSidebarOpen,
     toggleSidebar: () =>
       set((state) => {
         state.sidebarOpen = !state.sidebarOpen;

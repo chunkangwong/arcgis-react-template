@@ -29,9 +29,10 @@ export const SearchButton = ({
   const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
 
   useEffect(() => {
-    if (ref.current && asMapWidget && !sidebarOpen) {
+    if (ref.current && asMapWidget) {
       view.ui.add(ref.current, { position: "top-left", index: 0 });
-    } else {
+    }
+    if (sidebarOpen) {
       view.ui.remove(ref.current!);
     }
   }, [asMapWidget, sidebarOpen]);
