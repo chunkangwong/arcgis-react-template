@@ -65,7 +65,7 @@ export const WidgetPanel = () => {
         )}
       </div>
       <div
-        className="w-4 cursor-col-resize bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-colors"
+        className="w-4 cursor-ew-resize bg-gray-100 border-r-4 border-r-gray-200 hover:border-r-gray-500 active:border-r-gray-500 transition-colors"
         onMouseDown={enableResize}
       ></div>
     </>
