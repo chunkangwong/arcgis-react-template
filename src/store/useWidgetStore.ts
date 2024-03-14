@@ -24,33 +24,56 @@ const widgets = widgetsConfig.reduce(
   {} as Record<string, Widget>,
 );
 
+const url = new URL(window.location.href);
+const searchParams = new URLSearchParams(url.search);
+const activeWidgetIds = searchParams.getAll("aw");
+const dockedWidgetId = searchParams.get("dw");
+
 export const useWidgetStore = create<State & Actions>()(
   immer((set) => ({
-    activeWidgetIds: [],
-    dockedWidgetId: null,
+    activeWidgetIds: activeWidgetIds,
+    dockedWidgetId: dockedWidgetId,
     activateWidget: (id: string) =>
       set((state) => {
         if (state.activeWidgetIds.includes(id)) return;
         state.activeWidgetIds.push(id);
         state.dockedWidgetId = id;
+
+        const url = new URL(window.location.href);
+        const searchParams = new URLSearchParams(url.search);
+        searchParams.append("aw", id);
+        searchParams.set("dw", id);
+        window.history.replaceState(null, "", `?${searchParams.toString()}`);
       }),
     deactivateWidget: (id: string) =>
       set((state) => {
+        const url = new URL(window.location.href);
+        const searchParams = new URLSearchParams(url.search);
+
         state.activeWidgetIds = state.activeWidgetIds.filter(
           (activeId) => activeId !== id,
         );
+        searchParams.delete("aw", id);
         if (state.dockedWidgetId !== id) return;
         if (state.activeWidgetIds.length > 0) {
           state.dockedWidgetId = state.activeWidgetIds[0];
+          searchParams.set("dw", state.dockedWidgetId);
         } else {
           state.dockedWidgetId = null;
+          searchParams.delete("dw");
         }
+        window.history.replaceState(null, "", `?${searchParams.toString()}`);
       }),
     dockWidget: (index: number) =>
       set((state) => {
         const id = state.activeWidgetIds[index];
         if (id) {
           state.dockedWidgetId = id;
+
+          const url = new URL(window.location.href);
+          const searchParams = new URLSearchParams(url.search);
+          searchParams.set("dw", id);
+          window.history.replaceState(null, "", `?${searchParams.toString()}`);
         }
       }),
   })),
