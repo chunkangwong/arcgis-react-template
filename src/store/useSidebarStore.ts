@@ -8,6 +8,7 @@ type State = {
 type Actions = {
   toggleSidebar: () => void;
   openSidebar: () => void;
+  closeSidebar: () => void;
 };
 
 const url = new URL(window.location.href);
@@ -29,6 +30,10 @@ export const useSidebarStore = create<State & Actions>()(
     openSidebar: () =>
       set((state) => {
         state.sidebarOpen = true;
+      }),
+    closeSidebar: () =>
+      set((state) => {
+        state.sidebarOpen = false;
       }),
   })),
 );
