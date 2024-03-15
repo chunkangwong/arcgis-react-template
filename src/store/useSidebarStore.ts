@@ -3,12 +3,14 @@ import { immer } from "zustand/middleware/immer";
 
 type State = {
   sidebarOpen: boolean;
+  width: number;
 };
 
 type Actions = {
   toggleSidebar: () => void;
   openSidebar: () => void;
   closeSidebar: () => void;
+  setWidth: (width: number) => void;
 };
 
 const url = new URL(window.location.href);
@@ -23,6 +25,7 @@ const defaultSidebarOpen = Boolean(
 export const useSidebarStore = create<State & Actions>()(
   immer((set) => ({
     sidebarOpen: defaultSidebarOpen,
+    width: 32 * 16,
     toggleSidebar: () =>
       set((state) => {
         state.sidebarOpen = !state.sidebarOpen;
@@ -34,6 +37,10 @@ export const useSidebarStore = create<State & Actions>()(
     closeSidebar: () =>
       set((state) => {
         state.sidebarOpen = false;
+      }),
+    setWidth: (width) =>
+      set((state) => {
+        state.width = width;
       }),
   })),
 );

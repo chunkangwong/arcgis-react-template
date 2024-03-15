@@ -17,8 +17,10 @@ const WidgetPanelWrapper = ({
   widgetPanelHeader,
 }: WidgetPanelProps) => {
   const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
+  const width = useSidebarStore((state) => state.width);
+  const setWidth = useSidebarStore((state) => state.setWidth);
 
-  const { enableResize, width } = useResizeSidebarWidth(32 * 16);
+  const { enableResize } = useResizeSidebarWidth(setWidth);
 
   return (
     <>

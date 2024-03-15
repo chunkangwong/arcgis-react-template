@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-type UseResizeSidebarWidth = (defaultWidth: number) => {
-  width: number;
+type UseResizeSidebarWidth = (onWidthChange: (width: number) => void) => {
   enableResize: () => void;
 };
 
-export const useResizeSidebarWidth: UseResizeSidebarWidth = (defaultWidth) => {
+export const useResizeSidebarWidth: UseResizeSidebarWidth = (onWidthChange) => {
   const isResized = useRef(false);
-  const [width, setWidth] = useState(defaultWidth);
 
   useEffect(() => {
     const hanldeMouseMove = (e: MouseEvent) => {
@@ -15,11 +13,12 @@ export const useResizeSidebarWidth: UseResizeSidebarWidth = (defaultWidth) => {
         return;
       }
 
-      setWidth((previousWidth) => previousWidth + e.movementX);
+      onWidthChange(e.clientX - 64);
     };
 
     const handleMouseUp = () => {
       isResized.current = false;
+      document.body.style.cursor = "default";
     };
 
     window.addEventListener("mousemove", hanldeMouseMove);
@@ -33,10 +32,10 @@ export const useResizeSidebarWidth: UseResizeSidebarWidth = (defaultWidth) => {
 
   const enableResize = () => {
     isResized.current = true;
+    document.body.style.cursor = "ew-resize";
   };
 
   return {
-    width,
     enableResize,
   };
 };
