@@ -44,6 +44,8 @@ const WidgetPanelWrapper = ({
       <div
         className="w-4 cursor-ew-resize bg-gray-100 border-r-4 border-r-gray-200 hover:border-r-gray-500 active:border-r-gray-500 transition-colors"
         onMouseDown={enableResize}
+        draggable
+        onDragStart={(e) => e.preventDefault()}
       ></div>
     </>
   );
