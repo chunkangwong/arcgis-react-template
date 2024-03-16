@@ -8,12 +8,20 @@ interface MapWrapperProps {
 
 const MapWrapperInner = ({ children }: MapWrapperProps) => {
   const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
+  const width = useSidebarStore((state) => state.width);
 
   return (
     <div
+      style={
+        !sidebarOpen
+          ? {
+              marginLeft: `-${width / 16}rem`,
+            }
+          : undefined
+      }
       className={cn(
         "h-full flex-1 transform duration-300",
-        sidebarOpen ? "hidden md:block ml-0" : "md:-ml-[32rem]",
+        sidebarOpen && "hidden md:block ml-0",
       )}
     >
       {children}
