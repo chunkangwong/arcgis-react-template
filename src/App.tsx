@@ -17,7 +17,7 @@ interface AppProps {
   searchDialog: React.ReactNode;
 }
 
-function InnerApp({
+function AppInner({
   sidebar,
   widgetPanel,
   map,
@@ -34,22 +34,20 @@ function InnerApp({
   useHotkey("b", true, () => toggleSidebar());
 
   return (
-    <div className="flex flex-col-reverse md:flex-row h-full w-full">
+    <main className="flex flex-col-reverse md:flex-row h-full w-full">
       {sidebar}
-      <main className="grow flex flex-col-reverse md:flex-row">
-        {widgetPanel}
-        {map}
-      </main>
+      {widgetPanel}
+      {map}
       {searchButton}
       {toaster}
       {searchDialog}
-    </div>
+    </main>
   );
 }
 
 const App = () => {
   return (
-    <InnerApp
+    <AppInner
       sidebar={<Sidebar />}
       widgetPanel={<WidgetPanel />}
       map={<MapWrapper />}
