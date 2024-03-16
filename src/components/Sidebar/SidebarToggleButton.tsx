@@ -21,7 +21,7 @@ export const SidebarToggleButton = () => {
       <Button
         className={cn(
           "h-8 w-8 opacity-0 transition-opacity duration-300 rotate-90 md:rotate-0",
-          activeWidgets.length > 0 && "opacity-100",
+          (activeWidgets.length > 0 || sidebarOpen) && "opacity-100",
         )}
         size="icon"
         onClick={handleClick}
