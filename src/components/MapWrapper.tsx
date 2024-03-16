@@ -17,7 +17,7 @@ const MapWrapperInner = ({ children }: MapWrapperProps) => {
       style={
         !sidebarOpen && matches
           ? {
-              marginLeft: `-${width / 16}rem`,
+              marginLeft: `-${width / 16 + 1}rem`, // 1rem for the resize handle
             }
           : undefined
       }
