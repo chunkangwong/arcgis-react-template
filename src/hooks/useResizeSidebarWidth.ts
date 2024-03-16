@@ -1,10 +1,14 @@
 import { useEffect, useRef } from "react";
 
-type UseResizeSidebarWidth = (onWidthChange: (width: number) => void) => {
-  enableResize: () => void;
-};
+interface UseResizeSidebarWidthProps {
+  onWidthChange: (width: number) => void;
+  minWidth?: number;
+}
 
-export const useResizeSidebarWidth: UseResizeSidebarWidth = (onWidthChange) => {
+export const useResizeSidebarWidth = ({
+  onWidthChange,
+  minWidth,
+}: UseResizeSidebarWidthProps) => {
   const isResized = useRef(false);
 
   useEffect(() => {
@@ -13,7 +17,9 @@ export const useResizeSidebarWidth: UseResizeSidebarWidth = (onWidthChange) => {
         return;
       }
 
-      onWidthChange(e.clientX - 64);
+      const newWidth = e.clientX - 64;
+
+      onWidthChange(minWidth ? Math.max(newWidth, minWidth) : newWidth);
     };
 
     const handleMouseUp = () => {

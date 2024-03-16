@@ -22,7 +22,10 @@ const WidgetPanelWrapper = ({
   const setWidth = useSidebarStore((state) => state.setWidth);
   const matches = useBreakpoint("md");
 
-  const { enableResize } = useResizeSidebarWidth(setWidth);
+  const { enableResize } = useResizeSidebarWidth({
+    onWidthChange: setWidth,
+    minWidth: 20 * 16,
+  });
 
   return (
     <>
