@@ -1,3 +1,4 @@
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useResizeSidebarWidth } from "@/hooks/useResizeSidebarWidth";
 import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/store/useSidebarStore";
@@ -19,13 +20,14 @@ const WidgetPanelWrapper = ({
   const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
   const width = useSidebarStore((state) => state.width);
   const setWidth = useSidebarStore((state) => state.setWidth);
+  const matches = useBreakpoint("md");
 
   const { enableResize } = useResizeSidebarWidth(setWidth);
 
   return (
     <>
       <div
-        style={{ width: `${width / 16}rem` }}
+        style={matches ? { width: `${width / 16}rem` } : undefined}
         className={cn(
           "flex h-full w-full transform transition-transform duration-300 flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4",
           !sidebarOpen &&
