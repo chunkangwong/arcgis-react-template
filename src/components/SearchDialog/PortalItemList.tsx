@@ -4,6 +4,7 @@ import { toast } from "sonner";
 
 import { map, view } from "@/arcgis";
 import { useQueryPortalItems } from "@/hooks/useQueryPortalItems";
+import { useRecentStore } from "@/store/useRecentStore";
 import { useSearchDialogStore } from "@/store/useSearchDialogStore";
 import { Button } from "../ui/button";
 import { SearchList } from "./SearchList";
@@ -20,6 +21,7 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
   const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
+  const addRecentItem = useRecentStore((state) => state.addRecentItem);
 
   const handleClick = () => {
     fetchNextPage();
@@ -47,6 +49,11 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
       });
       map.add(layer);
       await layer.load();
+      addRecentItem({
+        id: value,
+        title: layer.title,
+        type: "portalItems",
+      });
       await view.goTo(layer.fullExtent);
       toast.success("Layer added");
     } catch (error) {

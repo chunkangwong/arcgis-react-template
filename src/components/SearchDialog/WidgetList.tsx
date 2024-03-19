@@ -1,6 +1,7 @@
 import { Component } from "lucide-react";
 import { useMemo } from "react";
 
+import { useRecentStore } from "@/store/useRecentStore";
 import { useSearchDialogStore } from "@/store/useSearchDialogStore";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import {
@@ -23,9 +24,15 @@ export const WidgetList = ({ searchTerm }: WidgetListProps) => {
   const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
+  const addRecentItem = useRecentStore((state) => state.addRecentItem);
 
-  const handleSelect = (widgetId: string) => {
+  const handleSelect = (widgetId: string, index: number) => {
     activateWidget(widgetId);
+    addRecentItem({
+      id: widgetId,
+      title: widgetList[index].label,
+      type: "widgets",
+    });
     openSidebar();
     setSearchDialogOpen(false);
   };

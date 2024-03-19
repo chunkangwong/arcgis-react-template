@@ -2,6 +2,7 @@ import { Pin } from "lucide-react";
 
 import { view } from "@/arcgis";
 import { useSearchViewModel } from "@/hooks/useSearchViewModel";
+import { useRecentStore } from "@/store/useRecentStore";
 import { useSearchDialogStore } from "@/store/useSearchDialogStore";
 import { SearchList } from "./SearchList";
 
@@ -14,6 +15,7 @@ export const PlaceList = ({ searchTerm }: PlaceListProps) => {
   const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
   );
+  const addRecentItem = useRecentStore((state) => state.addRecentItem);
 
   const getEmptyText = () => {
     if (isFetching) {
@@ -28,10 +30,15 @@ export const PlaceList = ({ searchTerm }: PlaceListProps) => {
   };
 
   const handleSelect = (_: string, index: number) => {
-    const geometry = data?.[index]?.geometry;
-    if (geometry) {
+    const place = data?.[index];
+    if (place) {
+      addRecentItem({
+        id: place.value,
+        title: place.label,
+        type: "places",
+      });
       setSearchDialogOpen(false);
-      view.goTo({ target: geometry, zoom: 15 });
+      view.goTo({ target: place.geometry, zoom: 15 });
     }
   };
 
