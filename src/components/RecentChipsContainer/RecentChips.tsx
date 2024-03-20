@@ -1,6 +1,11 @@
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { Component, Layers, Pin, X } from "lucide-react";
+import { toast } from "sonner";
 
-import { useRecentStore } from "@/store/useRecentStore";
+import { map, view } from "@/arcgis";
+import { RecentItem, useRecentStore } from "@/store/useRecentStore";
+import { useSidebarStore } from "@/store/useSidebarStore";
+import { useWidgetStore } from "@/store/useWidgetStore";
 import { Tooltip } from "../Tooltip";
 import { MotionButton } from "../ui/button";
 
@@ -13,10 +18,35 @@ const chipIcons = {
 export const RecentChips = () => {
   const recentItems = useRecentStore((state) => state.recentItems);
   const removeRecentItem = useRecentStore((state) => state.removeRecentItem);
+  const activateWidget = useWidgetStore((state) => state.activateWidget);
+  const openSidebar = useSidebarStore((state) => state.openSidebar);
 
   const handleRemove = (id: string) => (e: React.MouseEvent) => {
     e.stopPropagation();
     removeRecentItem(id);
+  };
+
+  const handleClick = (recentItem: RecentItem) => async () => {
+    if (recentItem.type === "portalItems") {
+      try {
+        toast.info("Adding layer...");
+        const layer = new FeatureLayer({
+          portalItem: {
+            id: recentItem.id,
+          },
+        });
+        map.add(layer);
+        await layer.load();
+        await view.goTo(layer.fullExtent);
+        toast.success("Layer added");
+      } catch (error) {
+        console.error(error);
+        toast.error("Error adding layer");
+      }
+    } else if (recentItem.type === "widgets") {
+      activateWidget(recentItem.id);
+      openSidebar();
+    }
   };
 
   return (
@@ -29,6 +59,7 @@ export const RecentChips = () => {
             layoutId={item.id}
             size="sm"
             className="group flex rounded-3xl gap-x-2 px-2 h-8"
+            onClick={handleClick(item)}
           >
             {chipIcons[item.type]}
             <span className="text-xs max-w-32 overflow-hidden whitespace-nowrap text-ellipsis">

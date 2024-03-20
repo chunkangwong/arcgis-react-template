@@ -4,7 +4,7 @@ import { immer } from "zustand/middleware/immer";
 
 import { Tab } from "./useSearchDialogStore";
 
-type RecentItem = {
+export type RecentItem = {
   id: string;
   title: string;
   type: Tab;
