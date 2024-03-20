@@ -8,8 +8,8 @@ import {
 
 import { useRecentStore } from "@/store/useRecentStore";
 import { useEffect, useRef, useState } from "react";
-import { Tooltip } from "./Tooltip";
-import { Button } from "./ui/button";
+import { Tooltip } from "../Tooltip";
+import { Button } from "../ui/button";
 
 const chipIcons = {
   places: <Pin className="h-3 w-3" />,
@@ -17,7 +17,7 @@ const chipIcons = {
   portalItems: <Layers className="h-3 w-3" />,
 };
 
-export const RecentChips = () => {
+export const RecentChipsContainer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState<
     "start" | "end" | "middle"
