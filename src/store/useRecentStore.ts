@@ -3,12 +3,18 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 import { Tab } from "./useSearchDialogStore";
-
-export type RecentItem = {
+type BaseRecentItem = {
   id: string;
   title: string;
   type: Tab;
 };
+
+export type RecentPlaceItem = {
+  type: "places";
+  geometry: __esri.Geometry;
+} & BaseRecentItem;
+
+export type RecentItem = BaseRecentItem | RecentPlaceItem;
 
 type State = {
   recentItems: RecentItem[];

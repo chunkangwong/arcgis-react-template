@@ -36,6 +36,7 @@ export const PlaceList = ({ searchTerm }: PlaceListProps) => {
         id: place.value,
         title: place.label,
         type: "places",
+        geometry: place.geometry.toJSON(),
       });
       setSearchDialogOpen(false);
       view.goTo({ target: place.geometry, zoom: 15 });

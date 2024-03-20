@@ -1,9 +1,14 @@
+import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { Component, Layers, Pin, X } from "lucide-react";
 import { toast } from "sonner";
 
 import { map, view } from "@/arcgis";
-import { RecentItem, useRecentStore } from "@/store/useRecentStore";
+import {
+  RecentItem,
+  RecentPlaceItem,
+  useRecentStore,
+} from "@/store/useRecentStore";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useWidgetStore } from "@/store/useWidgetStore";
 import { Tooltip } from "../Tooltip";
@@ -46,6 +51,9 @@ export const RecentChips = () => {
     } else if (recentItem.type === "widgets") {
       activateWidget(recentItem.id);
       openSidebar();
+    } else {
+      const geometry = Point.fromJSON((recentItem as RecentPlaceItem).geometry);
+      view.goTo({ target: geometry, zoom: 15 });
     }
   };
 
