@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import { useRecentStore } from "@/store/useRecentStore";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { RecentChips } from "./RecentChips";
@@ -15,6 +16,7 @@ const RecentChipsContainerWrapper = ({
   const [scrollPosition, setScrollPosition] = useState<
     "start" | "end" | "middle"
   >("start");
+  const recentItems = useRecentStore((state) => state.recentItems);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -55,6 +57,8 @@ const RecentChipsContainerWrapper = ({
       });
     }
   };
+
+  if (recentItems.length === 0) return null;
 
   return (
     <div className="flex w-full items-center">
