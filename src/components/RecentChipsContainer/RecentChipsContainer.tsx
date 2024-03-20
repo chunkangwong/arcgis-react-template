@@ -1,29 +1,20 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Component,
-  Layers,
-  Pin,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { useRecentStore } from "@/store/useRecentStore";
 import { useEffect, useRef, useState } from "react";
-import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
+import { RecentChips } from "./RecentChips";
 
-const chipIcons = {
-  places: <Pin className="h-3 w-3" />,
-  widgets: <Component className="h-3 w-3" />,
-  portalItems: <Layers className="h-3 w-3" />,
-};
+interface RecentChipsContainerProps {
+  recentChips: React.ReactNode;
+}
 
-export const RecentChipsContainer = () => {
+const RecentChipsContainerWrapper = ({
+  recentChips,
+}: RecentChipsContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState<
     "start" | "end" | "middle"
   >("start");
-
-  const recentItems = useRecentStore((state) => state.recentItems);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -77,16 +68,7 @@ export const RecentChipsContainer = () => {
         <ChevronLeft />
       </Button>
       <div ref={containerRef} className="flex gap-2 w-full overflow-auto">
-        {recentItems.map((item) => (
-          <Tooltip title={item.title} key={item.id} side="bottom">
-            <Button size="sm" className="flex rounded-3xl gap-x-2 px-2 h-8">
-              {chipIcons[item.type]}
-              <span className="text-xs max-w-32 overflow-hidden whitespace-nowrap text-ellipsis">
-                {item.title}
-              </span>
-            </Button>
-          </Tooltip>
-        ))}
+        {recentChips}
       </div>
       <Button
         disabled={scrollPosition === "end"}
@@ -99,4 +81,8 @@ export const RecentChipsContainer = () => {
       </Button>
     </div>
   );
+};
+
+export const RecentChipsContainer = () => {
+  return <RecentChipsContainerWrapper recentChips={<RecentChips />} />;
 };
