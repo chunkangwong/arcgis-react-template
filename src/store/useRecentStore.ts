@@ -25,9 +25,12 @@ export const useRecentStore = create<State & Actions>()(
       recentItems: [],
       addRecentItem: (id) =>
         set((state) => {
-          state.recentItems.push(id);
+          state.recentItems = state.recentItems.filter(
+            (item) => item.id !== id.id,
+          );
+          state.recentItems.unshift(id);
           if (state.recentItems.length > MAXIMUM_RECENT_ITEMS) {
-            state.recentItems.shift();
+            state.recentItems.pop();
           }
         }),
     })),
