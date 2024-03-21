@@ -3,31 +3,29 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 import { Tab } from "./useSearchDialogStore";
-type BaseRecentItem = {
+
+interface BaseRecentItem {
   id: string;
   title: string;
   type: Tab;
-};
+}
 
-export type RecentPlaceItem = {
+export interface RecentPlaceItem extends BaseRecentItem {
   type: "places";
   geometry: __esri.Geometry;
-} & BaseRecentItem;
+}
 
 export type RecentItem = BaseRecentItem | RecentPlaceItem;
 
-type State = {
+interface RecentStore {
   recentItems: RecentItem[];
-};
-
-type Actions = {
   addRecentItem: (recentItem: RecentItem) => void;
   removeRecentItem: (id: string) => void;
-};
+}
 
 const MAXIMUM_RECENT_ITEMS = 5;
 
-export const useRecentStore = create<State & Actions>()(
+export const useRecentStore = create<RecentStore>()(
   persist(
     immer((set) => ({
       recentItems: [],

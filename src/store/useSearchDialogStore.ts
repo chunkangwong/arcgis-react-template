@@ -3,17 +3,14 @@ import { immer } from "zustand/middleware/immer";
 
 export type Tab = "places" | "portalItems" | "widgets";
 
-type State = {
+interface SearchDialogStore {
   open: boolean;
   tab: Tab;
-};
-
-type Actions = {
   setSearchDialogOpen: (open: boolean) => void;
   setSearchDialog: ({ open, tab }: { open?: boolean; tab?: Tab }) => void;
-};
+}
 
-export const useSearchDialogStore = create<State & Actions>()(
+export const useSearchDialogStore = create<SearchDialogStore>()(
   immer((set) => ({
     open: false,
     tab: "places",

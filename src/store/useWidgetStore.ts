@@ -3,16 +3,13 @@ import { immer } from "zustand/middleware/immer";
 
 import widgetsConfig from "@/config/widgets.config.json";
 
-type State = {
+interface WidgetStore {
   activeWidgetIds: string[];
   dockedWidgetId: string | null;
-};
-
-type Actions = {
   activateWidget: (id: string) => void;
   deactivateWidget: (id: string) => void;
   dockWidget: (index: number) => void;
-};
+}
 
 type Widget = (typeof widgetsConfig)[number];
 
@@ -29,7 +26,7 @@ const searchParams = new URLSearchParams(url.search);
 const activeWidgetIds = searchParams.getAll("aw");
 const dockedWidgetId = searchParams.get("dw");
 
-export const useWidgetStore = create<State & Actions>()(
+export const useWidgetStore = create<WidgetStore>()(
   immer((set) => ({
     activeWidgetIds: activeWidgetIds,
     dockedWidgetId: dockedWidgetId,
@@ -79,10 +76,10 @@ export const useWidgetStore = create<State & Actions>()(
   })),
 );
 
-export const selectActiveWidgets = (state: State) =>
+export const selectActiveWidgets = (state: WidgetStore) =>
   state.activeWidgetIds.filter(Boolean).map((id) => widgets[id]); // BUG: filter(Boolean) is needed when deactivating widget from SidebarButton
 
-export const selectDockedWidget = (state: State) =>
+export const selectDockedWidget = (state: WidgetStore) =>
   state.dockedWidgetId ? widgets[state.dockedWidgetId] ?? null : null;
 
 export const selectWidgetsBySearchTerm = (searchTerm: string) => {

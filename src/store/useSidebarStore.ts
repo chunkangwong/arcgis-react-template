@@ -1,17 +1,14 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-type State = {
+interface SidebarStore {
   sidebarOpen: boolean;
   width: number;
-};
-
-type Actions = {
   toggleSidebar: () => void;
   openSidebar: () => void;
   closeSidebar: () => void;
   setWidth: (width: number) => void;
-};
+}
 
 const url = new URL(window.location.href);
 const searchParams = new URLSearchParams(url.search);
@@ -22,7 +19,7 @@ const defaultSidebarOpen = Boolean(
   dockedWidgetId && activeWidgetIds.includes(dockedWidgetId),
 );
 
-export const useSidebarStore = create<State & Actions>()(
+export const useSidebarStore = create<SidebarStore>()(
   immer((set) => ({
     sidebarOpen: defaultSidebarOpen,
     width: 32 * 16,

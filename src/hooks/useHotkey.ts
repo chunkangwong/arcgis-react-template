@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 
-type UseHotKey = (key: string, ctrlKey: boolean, callback: () => void) => void;
-
-export const useHotkey: UseHotKey = (key, ctrlKey, callback) => {
+export const useHotkey = (
+  key: string,
+  ctrlKey: boolean,
+  callback: () => void,
+) => {
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
       if (e.key === key) {
