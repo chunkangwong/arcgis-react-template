@@ -2,18 +2,21 @@ import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useResizeSidebarWidth } from "@/hooks/useResizeSidebarWidth";
 import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/store/useSidebarStore";
+import { RecentChipsContainer } from "../RecentChipsContainer";
 import { SearchButton } from "../SearchButton";
 import { ActiveWidgets } from "./ActiveWidgets";
 import { WidgetPanelHeader } from "./WidgetPanelHeader";
 
 interface WidgetPanelProps {
   searchButton: React.ReactNode;
+  recentChipsContainer: React.ReactNode;
   widgetPanelHeader: React.ReactNode;
   activeWidgets: React.ReactNode;
 }
 
 const WidgetPanelWrapper = ({
   activeWidgets,
+  recentChipsContainer,
   searchButton,
   widgetPanelHeader,
 }: WidgetPanelProps) => {
@@ -38,6 +41,7 @@ const WidgetPanelWrapper = ({
         )}
       >
         {searchButton}
+        {recentChipsContainer}
         {widgetPanelHeader}
         {activeWidgets}
       </div>
@@ -61,6 +65,7 @@ export const WidgetPanel = () => {
           tabToOpen="widgets"
         />
       }
+      recentChipsContainer={<RecentChipsContainer enableScrollButton />}
       widgetPanelHeader={<WidgetPanelHeader />}
       activeWidgets={<ActiveWidgets />}
     />

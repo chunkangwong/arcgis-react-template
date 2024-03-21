@@ -1,5 +1,5 @@
+import { MapWidgetContainer } from "./components/MapWidgetContainer";
 import { MapWrapper } from "./components/MapWrapper";
-import { SearchButton } from "./components/SearchButton";
 import { SearchDialog } from "./components/SearchDialog";
 import { Sidebar } from "./components/Sidebar";
 import { WidgetPanel } from "./components/WidgetPanel";
@@ -12,7 +12,7 @@ interface AppProps {
   sidebar: React.ReactNode;
   widgetPanel: React.ReactNode;
   map: React.ReactNode;
-  searchButton: React.ReactNode;
+  mapWidgetContainer: React.ReactNode;
   toaster: React.ReactNode;
   searchDialog: React.ReactNode;
 }
@@ -21,7 +21,7 @@ function AppInner({
   sidebar,
   widgetPanel,
   map,
-  searchButton,
+  mapWidgetContainer,
   toaster,
   searchDialog,
 }: AppProps) {
@@ -38,7 +38,7 @@ function AppInner({
       {sidebar}
       {widgetPanel}
       {map}
-      {searchButton}
+      {mapWidgetContainer}
       {toaster}
       {searchDialog}
     </main>
@@ -51,7 +51,7 @@ const App = () => {
       sidebar={<Sidebar />}
       widgetPanel={<WidgetPanel />}
       map={<MapWrapper />}
-      searchButton={<SearchButton asMapWidget />}
+      mapWidgetContainer={<MapWidgetContainer />}
       toaster={<Toaster />}
       searchDialog={<SearchDialog />}
     />

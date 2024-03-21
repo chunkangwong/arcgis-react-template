@@ -25,7 +25,8 @@ export const SidebarButton = ({
     openSidebar();
   };
 
-  const handleXClick = () => {
+  const handleXClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     deactivateWidget(widgetId);
   };
 

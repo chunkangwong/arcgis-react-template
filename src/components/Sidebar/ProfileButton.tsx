@@ -1,6 +1,6 @@
 import { User } from "lucide-react";
 
-import { ProfileDialog } from "../ProfileDialog/ProfileDialog";
+import { ProfileDialog } from "../ProfileDialog";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 

@@ -1,41 +1,24 @@
 import { Search } from "lucide-react";
-import { useEffect, useRef } from "react";
 
-import { view } from "@/arcgis";
 import { cn } from "@/lib/utils";
 import { Tab, useSearchDialogStore } from "@/store/useSearchDialogStore";
-import { useSidebarStore } from "@/store/useSidebarStore";
 import { HotkeyChip } from "./HotkeyChip";
 import { Button } from "./ui/button";
 
 interface SearchButtonProps {
-  asMapWidget?: boolean;
   fullWidth?: boolean;
   label?: string;
   tabToOpen?: Tab;
 }
 
 export const SearchButton = ({
-  asMapWidget,
   fullWidth,
   label,
   tabToOpen,
 }: SearchButtonProps) => {
-  const ref = useRef<HTMLButtonElement>(null);
-
   const setSearchDialog = useSearchDialogStore(
     (state) => state.setSearchDialog,
   );
-  const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
-
-  useEffect(() => {
-    if (ref.current && asMapWidget) {
-      view.ui.add(ref.current, { position: "top-left", index: 0 });
-    }
-    if (sidebarOpen) {
-      view.ui.remove(ref.current!);
-    }
-  }, [asMapWidget, sidebarOpen]);
 
   const handleClick = () => {
     setSearchDialog({ open: true, tab: tabToOpen });
@@ -44,7 +27,6 @@ export const SearchButton = ({
   return (
     <Button
       variant="outline"
-      ref={ref}
       className={cn(
         "flex  justify-start text-muted-foreground",
         fullWidth ? "w-full" : "w-[16rem]",
