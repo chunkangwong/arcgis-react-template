@@ -37,7 +37,7 @@ const MapWidgetContainerInner = ({
 export const MapWidgetContainer = () => {
   return (
     <MapWidgetContainerInner
-      searchButton={<SearchButton fullWidth />}
+      searchButton={<SearchButton />}
       recentChipsContainer={<RecentChipsContainer />}
     />
   );

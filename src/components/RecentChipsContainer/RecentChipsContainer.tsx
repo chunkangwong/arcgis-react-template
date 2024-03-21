@@ -6,12 +6,17 @@ import { Button } from "../ui/button";
 import { RecentChips } from "./RecentChips";
 
 interface RecentChipsContainerProps {
+  enableScrollButton?: boolean;
+}
+
+interface RecentChipsContainerWrapperProps extends RecentChipsContainerProps {
   recentChips: React.ReactNode;
 }
 
 const RecentChipsContainerWrapper = ({
   recentChips,
-}: RecentChipsContainerProps) => {
+  enableScrollButton,
+}: RecentChipsContainerWrapperProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState<
     "start" | "end" | "middle"
@@ -62,31 +67,42 @@ const RecentChipsContainerWrapper = ({
 
   return (
     <div className="flex w-full items-center">
-      <Button
-        disabled={scrollPosition === "start"}
-        size="icon"
-        variant="ghost"
-        className="h-8 w-8 disabled:opacity-20 transition-opacity"
-        onClick={handleScroll("left")}
-      >
-        <ChevronLeft />
-      </Button>
+      {enableScrollButton && (
+        <Button
+          disabled={scrollPosition === "start"}
+          size="icon"
+          variant="ghost"
+          className="h-8 w-8 disabled:opacity-20 transition-opacity"
+          onClick={handleScroll("left")}
+        >
+          <ChevronLeft />
+        </Button>
+      )}
       <div ref={containerRef} className="flex gap-2 w-full overflow-auto">
         {recentChips}
       </div>
-      <Button
-        disabled={scrollPosition === "end"}
-        size="icon"
-        variant="ghost"
-        className="h-8 w-8 disabled:opacity-20 transition-opacity"
-        onClick={handleScroll("right")}
-      >
-        <ChevronRight />
-      </Button>
+      {enableScrollButton && (
+        <Button
+          disabled={scrollPosition === "end"}
+          size="icon"
+          variant="ghost"
+          className="h-8 w-8 disabled:opacity-20 transition-opacity"
+          onClick={handleScroll("right")}
+        >
+          <ChevronRight />
+        </Button>
+      )}
     </div>
   );
 };
 
-export const RecentChipsContainer = () => {
-  return <RecentChipsContainerWrapper recentChips={<RecentChips />} />;
+export const RecentChipsContainer = ({
+  enableScrollButton,
+}: RecentChipsContainerProps) => {
+  return (
+    <RecentChipsContainerWrapper
+      recentChips={<RecentChips />}
+      enableScrollButton={enableScrollButton}
+    />
+  );
 };

@@ -65,7 +65,7 @@ export const WidgetPanel = () => {
           tabToOpen="widgets"
         />
       }
-      recentChipsContainer={<RecentChipsContainer />}
+      recentChipsContainer={<RecentChipsContainer enableScrollButton />}
       widgetPanelHeader={<WidgetPanelHeader />}
       activeWidgets={<ActiveWidgets />}
     />
