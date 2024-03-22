@@ -7,9 +7,11 @@ import { RecentChips } from "./RecentChips";
 
 interface RecentChipsContainerProps {
   enableScrollButton?: boolean;
+  parent: "WidgetPanel" | "MapWidgetContainer";
 }
 
-interface RecentChipsContainerWrapperProps extends RecentChipsContainerProps {
+interface RecentChipsContainerWrapperProps {
+  enableScrollButton?: boolean;
   recentChips: React.ReactNode;
 }
 
@@ -98,10 +100,11 @@ const RecentChipsContainerWrapper = ({
 
 export const RecentChipsContainer = ({
   enableScrollButton,
+  parent,
 }: RecentChipsContainerProps) => {
   return (
     <RecentChipsContainerWrapper
-      recentChips={<RecentChips />}
+      recentChips={<RecentChips parent={parent} />}
       enableScrollButton={enableScrollButton}
     />
   );
