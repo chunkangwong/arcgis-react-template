@@ -32,13 +32,15 @@ export const useWidgetStore = create<WidgetStore>()(
     dockedWidgetId: dockedWidgetId,
     activateWidget: (id: string) =>
       set((state) => {
-        if (state.activeWidgetIds.includes(id)) return;
-        state.activeWidgetIds.push(id);
-        state.dockedWidgetId = id;
-
         const url = new URL(window.location.href);
         const searchParams = new URLSearchParams(url.search);
-        searchParams.append("aw", id);
+
+        if (!state.activeWidgetIds.includes(id)) {
+          state.activeWidgetIds.push(id);
+          searchParams.append("aw", id);
+        }
+
+        state.dockedWidgetId = id;
         searchParams.set("dw", id);
         window.history.replaceState(null, "", `?${searchParams.toString()}`);
       }),
