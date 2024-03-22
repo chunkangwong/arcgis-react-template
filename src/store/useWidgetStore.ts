@@ -53,7 +53,6 @@ export const useWidgetStore = create<WidgetStore>()(
           (activeId) => activeId !== id,
         );
         searchParams.delete("aw", id);
-        if (state.dockedWidgetId !== id) return;
         if (state.activeWidgetIds.length > 0) {
           state.dockedWidgetId = state.activeWidgetIds[0];
           searchParams.set("dw", state.dockedWidgetId);
