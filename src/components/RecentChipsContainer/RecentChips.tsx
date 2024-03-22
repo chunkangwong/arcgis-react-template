@@ -37,6 +37,13 @@ export const RecentChips = ({ parent }: RecentChipsProps) => {
 
   const handleClick = (recentItem: RecentItem) => async () => {
     if (recentItem.type === "portalItems") {
+      for (const layer of map.layers) {
+        if ((layer as __esri.FeatureLayer)?.portalItem?.id === recentItem.id) {
+          layer.visible = true;
+          await view.goTo(layer.fullExtent);
+          return;
+        }
+      }
       try {
         toast.info("Adding layer...");
         const layer = new FeatureLayer({
