@@ -40,6 +40,14 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
   };
 
   const handleSelect = async (value: string) => {
+    for (const layer of map.layers) {
+      if ((layer as __esri.FeatureLayer)?.portalItem?.id === value) {
+        layer.visible = true;
+        await view.goTo(layer.fullExtent);
+        setSearchDialogOpen(false);
+        return;
+      }
+    }
     try {
       toast.info("Adding layer...");
       const layer = new FeatureLayer({
