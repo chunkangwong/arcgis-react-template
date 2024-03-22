@@ -38,7 +38,9 @@ export const MapWidgetContainer = () => {
   return (
     <MapWidgetContainerInner
       searchButton={<SearchButton />}
-      recentChipsContainer={<RecentChipsContainer />}
+      recentChipsContainer={
+        <RecentChipsContainer parent="MapWidgetContainer" />
+      }
     />
   );
 };
