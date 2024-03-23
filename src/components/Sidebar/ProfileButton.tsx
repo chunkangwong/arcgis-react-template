@@ -11,7 +11,7 @@ interface ProfileButtonProps {
 export const ProfileButton = ({ side }: ProfileButtonProps) => {
   return (
     <ProfileDialog>
-      <Button className="h-8 w-8 ml-auto md:mt-auto" size="icon">
+      <Button className="h-8 w-8 " size="icon">
         <Tooltip side={side} title="Profile" sideOffset={8}>
           <User />
         </Tooltip>

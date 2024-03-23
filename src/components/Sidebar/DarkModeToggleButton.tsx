@@ -19,11 +19,7 @@ export const DarkModeToggleButton = ({ side }: DarkModeToggleButtonProps) => {
 
   return (
     <Tooltip title="Toggle Dark Mode" side={side}>
-      <Button
-        className="h-8 w-8 ml-auto md:mt-auto"
-        size="icon"
-        onClick={handleClick}
-      >
+      <Button className="h-8 w-8" size="icon" onClick={handleClick}>
         {isDarkMode ? (
           <Moon className="h-4 w-4" />
         ) : (

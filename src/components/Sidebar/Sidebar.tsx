@@ -21,7 +21,7 @@ export const Sidebar = () => {
   }, [activeWidgets]);
 
   return (
-    <div className="z-10 flex h-16 w-full flex-row md:flex-col md:h-full md:w-16 gap-4 md:border-r-2 bg-background p-4 justify-center">
+    <nav className="z-10 flex h-16 w-full flex-row md:flex-col md:h-full md:w-16 gap-4 md:border-r-2 bg-background p-4 justify-center">
       <SidebarToggleButton side={side} />
       {activeWidgets.map((widget, index) => (
         <SidebarButton
@@ -32,8 +32,10 @@ export const Sidebar = () => {
           side={side}
         />
       ))}
-      <DarkModeToggleButton side={side} />
-      <ProfileButton side={side} />
-    </div>
+      <div className="flex md:flex-col ml-auto md:mt-auto gap-4">
+        <DarkModeToggleButton side={side} />
+        <ProfileButton side={side} />
+      </div>
+    </nav>
   );
 };
