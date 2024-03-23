@@ -85,7 +85,7 @@ export const RecentChips = ({ parent }: RecentChipsProps) => {
               {item.title}
             </span>
             <X
-              className="cursor-pointer opacity-0 h-4 w-4 rounded-full group-hover:opacity-100 transition-opacity bg-red-400 hover:bg-red-500"
+              className="cursor-pointer opacity-0 h-4 w-4 rounded-full group-hover:opacity-100 bg-red-400 hover:bg-red-500 hover:scale-125 transition duration-300"
               onClick={handleRemove(item.id)}
             />
           </MotionButton>
