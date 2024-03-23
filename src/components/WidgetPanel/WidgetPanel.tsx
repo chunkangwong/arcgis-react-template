@@ -35,7 +35,7 @@ const WidgetPanelWrapper = ({
       <div
         style={matches ? { width: `${width / 16}rem` } : undefined}
         className={cn(
-          "flex h-full w-full transform transition-transform duration-300 flex-col gap-y-4 overflow-y-auto bg-gray-100 p-4",
+          "flex h-full w-full transform transition-transform duration-300 flex-col gap-y-4 overflow-y-auto bg-background p-4",
           !sidebarOpen &&
             "hidden md:flex translate-y-full translate-x-0 md:translate-y-0 md:-translate-x-full",
         )}
@@ -46,7 +46,7 @@ const WidgetPanelWrapper = ({
         {activeWidgets}
       </div>
       <div
-        className="w-4 cursor-ew-resize bg-gray-100 border-r-4 border-r-gray-200 hover:border-r-gray-500 active:border-r-gray-500 transition-colors"
+        className="w-4 cursor-ew-resize bg-background border-r-4 border-r-gray-200 dark:border-r-gray-800 hover:border-r-gray-500 dark:hover:border-r-gray-500 active:border-r-gray-500 dark:active:border-r-gray-500 hover:transition-colors"
         onMouseDown={enableResize}
         draggable
         onDragStart={(e) => e.preventDefault()}
