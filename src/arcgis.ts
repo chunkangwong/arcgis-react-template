@@ -1,3 +1,4 @@
+import Basemap from "@arcgis/core/Basemap";
 import Map from "@arcgis/core/Map";
 import esriConfig from "@arcgis/core/config";
 import Credential from "@arcgis/core/identity/Credential";
@@ -16,8 +17,16 @@ esriId.registerOAuthInfos([info]);
 
 export const portal = new Portal();
 
+export const topographicBasemap = new Basemap({
+  style: { id: "arcgis/topographic" },
+});
+
+export const darkGrayBasemap = new Basemap({
+  style: { id: "arcgis/dark-gray" },
+});
+
 export const map = new Map({
-  basemap: "arcgis/topographic",
+  basemap: topographicBasemap,
 });
 
 export const view = new MapView({
