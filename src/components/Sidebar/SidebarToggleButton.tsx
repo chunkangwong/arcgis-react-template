@@ -7,7 +7,11 @@ import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 import { SidebarToggleButtonTooltipTitle } from "./SidebarToggleButtonTooltipTitle";
 
-export const SidebarToggleButton = () => {
+interface SidebarToggleButtonProps {
+  side: "top" | "right";
+}
+
+export const SidebarToggleButton = ({ side }: SidebarToggleButtonProps) => {
   const sidebarOpen = useSidebarStore((state) => state.sidebarOpen);
   const toggleSidebar = useSidebarStore((state) => state.toggleSidebar);
   const activeWidgets = useWidgetStore(selectActiveWidgets);
@@ -17,7 +21,7 @@ export const SidebarToggleButton = () => {
   };
 
   return (
-    <Tooltip title={<SidebarToggleButtonTooltipTitle />} side="right">
+    <Tooltip title={<SidebarToggleButtonTooltipTitle />} side={side}>
       <Button
         className={cn(
           "h-8 w-8 opacity-0 transition-opacity duration-300 rotate-90 md:rotate-0",

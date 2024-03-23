@@ -4,7 +4,11 @@ import { useState } from "react";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 
-export const DarkModeToggleButton = () => {
+interface DarkModeToggleButtonProps {
+  side: "top" | "right";
+}
+
+export const DarkModeToggleButton = ({ side }: DarkModeToggleButtonProps) => {
   const [isDarkMode, setIsDarkMode] = useState(localStorage.theme === "dark");
 
   const handleClick = () => {
@@ -14,7 +18,7 @@ export const DarkModeToggleButton = () => {
   };
 
   return (
-    <Tooltip title="Toggle Dark Mode" side="right">
+    <Tooltip title="Toggle Dark Mode" side={side}>
       <Button
         className="h-8 w-8 ml-auto md:mt-auto"
         size="icon"
