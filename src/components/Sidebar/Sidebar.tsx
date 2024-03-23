@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { selectActiveWidgets, useWidgetStore } from "@/store/useWidgetStore";
+import { DarkModeToggleButton } from "./DarkModeToggleButton";
 import { ProfileButton } from "./ProfileButton";
 import { SidebarButton } from "./SidebarButton";
 import { SidebarToggleButton } from "./SidebarToggleButton";
@@ -27,6 +28,7 @@ export const Sidebar = () => {
           title={widget.title}
         />
       ))}
+      <DarkModeToggleButton />
       <ProfileButton />
     </div>
   );
