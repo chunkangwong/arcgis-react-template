@@ -58,7 +58,7 @@ export const SearchDialog = () => {
           />
         </div>
         <Tabs value={tab} onValueChange={handleTabChange}>
-          <TabsList className="w-full">
+          <TabsList className="w-full rounded-none">
             <TabsTrigger value="places">Places</TabsTrigger>
             <TabsTrigger value="portalItems">Portal Items</TabsTrigger>
             <TabsTrigger value="widgets">Widgets</TabsTrigger>
