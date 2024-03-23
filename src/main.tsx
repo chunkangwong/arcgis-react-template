@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 
 import { arcgisUser } from "./arcgis.ts";
 import "./index.css";
+import { toggleDarkMode } from "./lib/utils.ts";
 
 const init = async () => {
   const queryClient = new QueryClient({
@@ -16,6 +17,8 @@ const init = async () => {
   });
 
   await arcgisUser.fetchCredential();
+
+  toggleDarkMode(localStorage.theme === "dark");
 
   const { default: App } = await import("./App.tsx");
 

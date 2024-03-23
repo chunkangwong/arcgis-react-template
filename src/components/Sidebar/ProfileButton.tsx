@@ -4,11 +4,15 @@ import { ProfileDialog } from "../ProfileDialog";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 
-export const ProfileButton = () => {
+interface ProfileButtonProps {
+  side: "top" | "right";
+}
+
+export const ProfileButton = ({ side }: ProfileButtonProps) => {
   return (
     <ProfileDialog>
       <Button className="h-8 w-8 ml-auto md:mt-auto" size="icon">
-        <Tooltip side="left" title="Profile" sideOffset={8}>
+        <Tooltip side={side} title="Profile" sideOffset={8}>
           <User />
         </Tooltip>
       </Button>

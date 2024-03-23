@@ -9,12 +9,14 @@ interface SidebarButtonProps {
   widgetId: string;
   title: string;
   index: number;
+  side: "top" | "right";
 }
 
 export const SidebarButton = ({
   title,
   widgetId,
   index,
+  side,
 }: SidebarButtonProps) => {
   const dockWidget = useWidgetStore((state) => state.dockWidget);
   const deactivateWidget = useWidgetStore((state) => state.deactivateWidget);
@@ -31,7 +33,7 @@ export const SidebarButton = ({
   };
 
   return (
-    <Tooltip title={title} side="right">
+    <Tooltip title={title} side={side}>
       <Button
         className="group relative h-8 w-8 text-xs capitalize"
         onClick={handleClick}
