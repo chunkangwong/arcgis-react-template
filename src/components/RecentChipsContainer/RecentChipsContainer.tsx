@@ -80,7 +80,10 @@ const RecentChipsContainerWrapper = ({
           <ChevronLeft />
         </Button>
       )}
-      <div ref={containerRef} className="flex gap-2 w-full overflow-auto">
+      <div
+        ref={containerRef}
+        className="flex gap-2 w-full overflow-auto scrollbar-hide"
+      >
         {recentChips}
       </div>
       {enableScrollButton && (
