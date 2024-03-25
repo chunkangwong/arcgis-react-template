@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useWidgetStore } from "@/store/useWidgetStore";
 import { Tooltip } from "../Tooltip";
-import { Button } from "../ui/button";
+import { MotionButton } from "../ui/button";
 
 interface SidebarButtonProps {
   widgetId: string;
@@ -33,10 +33,12 @@ export const SidebarButton = ({
   };
 
   return (
-    <Tooltip title={title} side={side}>
-      <Button
+    <Tooltip key={`SidebarButton-widget-${widgetId}`} title={title} side={side}>
+      <MotionButton
         className="group relative h-8 w-8 text-xs capitalize"
         onClick={handleClick}
+        layout
+        layoutId={`SidebarButton-widget-${widgetId}`}
       >
         <X
           className="absolute -left-2 -top-2 h-4 w-4 cursor-pointer rounded-full bg-red-400 hover:bg-red-500 text-white opacity-0 group-hover:opacity-100 hover:scale-125 transition duration-300"
@@ -46,7 +48,7 @@ export const SidebarButton = ({
           .split(" ")
           .map((word) => word[0])
           .join("")}
-      </Button>
+      </MotionButton>
     </Tooltip>
   );
 };
