@@ -71,9 +71,8 @@ export const RecentChips = ({ parent }: RecentChipsProps) => {
   return (
     <>
       {recentItems.map((item) => (
-        <Tooltip title={item.title} key={item.id} side="bottom">
+        <Tooltip title={item.title} key={`${parent}-${item.id}`} side="bottom">
           <MotionButton
-            key={`${parent}-${item.id}`}
             layout
             layoutId={`${parent}-${item.id}`}
             size="sm"
