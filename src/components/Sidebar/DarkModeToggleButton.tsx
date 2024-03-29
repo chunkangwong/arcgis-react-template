@@ -1,5 +1,6 @@
 import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { toggleDarkMode } from "@/lib/utils";
 import { Tooltip } from "../Tooltip";
@@ -10,6 +11,7 @@ interface DarkModeToggleButtonProps {
 }
 
 export const DarkModeToggleButton = ({ side }: DarkModeToggleButtonProps) => {
+  const { t } = useTranslation();
   const [isDarkMode, setIsDarkMode] = useState(localStorage.theme === "dark");
 
   const handleClick = () => {
@@ -20,7 +22,7 @@ export const DarkModeToggleButton = ({ side }: DarkModeToggleButtonProps) => {
 
   return (
     <Tooltip
-      title={isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
+      title={isDarkMode ? t("Toggle Light Mode") : t("Toggle Dark Mode")}
       side={side}
     >
       <Button className="h-8 w-8" size="icon" onClick={handleClick}>

@@ -1,1 +1,19 @@
-{ "Welcome to React": "Bienvenue à React et react-i18next" }
+{
+  "Open": "Ouvrir",
+  "Close": "Fermer",
+  "Language Setting": "Paramètres de langue",
+  "Toggle Light Mode": "Basculer en mode clair",
+  "Toggle Dark Mode": "Basculer en mode sombre",
+  "Profile": "Profil",
+  "Search for widget...": "Rechercher un widget...",
+  "Adding layer...": "Ajout de la couche...",
+  "Layer added": "Couche ajoutée",
+  "Error adding layer": "Erreur lors de l'ajout de la couche",
+  "Search...": "Rechercher...",
+  "Search for places": "Rechercher des lieux",
+  "Search for portal items": "Rechercher des éléments de portail",
+  "Search for widgets": "Rechercher des widgets",
+  "Places": "Lieux",
+  "Portal Items": "Éléments de portail",
+  "Widgets": "Widgets"
+}

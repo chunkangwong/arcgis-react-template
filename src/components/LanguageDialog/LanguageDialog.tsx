@@ -30,6 +30,10 @@ const languages = [
     value: "fr",
     label: "French",
   },
+  {
+    value: "cn",
+    label: "Chinese",
+  },
 ];
 
 export const LanguageDialog = ({

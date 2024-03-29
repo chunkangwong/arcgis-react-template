@@ -37,7 +37,7 @@ export const SearchButton = ({
       onClick={handleClick}
     >
       <Search className="mr-4 h-4 w-4 opacity-50" />
-      {label ?? t("Welcome to React")}
+      {label ?? t("Search...")}
       <HotkeyChip>⌘ k</HotkeyChip>
     </Button>
   );

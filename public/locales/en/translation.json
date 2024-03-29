@@ -1,1 +1,19 @@
-{ "Welcome to React": "Welcome to React and react-i18next" }
+{
+  "Open": "Open",
+  "Close": "Close",
+  "Language Setting": "Language Setting",
+  "Toggle Light Mode": "Toggle Light Mode",
+  "Toggle Dark Mode": "Toggle Dark Mode",
+  "Profile": "Profile",
+  "Search for widget...": "Search for widget...",
+  "Adding layer...": "Adding layer...",
+  "Layer added": "Layer added",
+  "Error adding layer": "Error adding layer",
+  "Search...": "Search...",
+  "Search for places": "Search for places",
+  "Search for portal items": "Search for portal items",
+  "Search for widgets": "Search for widgets",
+  "Places": "Places",
+  "Portal Items": "Portal Items",
+  "Widgets": "Widgets"
+}

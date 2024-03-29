@@ -1,6 +1,7 @@
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { Component, Layers, Pin, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 import { map, view } from "@/arcgis";
@@ -25,6 +26,7 @@ const chipIcons = {
 };
 
 export const RecentChips = ({ parent }: RecentChipsProps) => {
+  const { t } = useTranslation();
   const recentItems = useRecentStore((state) => state.recentItems);
   const removeRecentItem = useRecentStore((state) => state.removeRecentItem);
   const activateWidget = useWidgetStore((state) => state.activateWidget);
@@ -45,7 +47,7 @@ export const RecentChips = ({ parent }: RecentChipsProps) => {
         }
       }
       try {
-        toast.info("Adding layer...");
+        toast.info(t("Adding layer..."));
         const layer = new FeatureLayer({
           portalItem: {
             id: recentItem.id,
@@ -54,10 +56,10 @@ export const RecentChips = ({ parent }: RecentChipsProps) => {
         map.add(layer);
         await layer.load();
         await view.goTo(layer.fullExtent);
-        toast.success("Layer added");
+        toast.success(t("Layer added"));
       } catch (error) {
         console.error(error);
-        toast.error("Error adding layer");
+        toast.error(t("Error adding layer"));
       }
     } else if (recentItem.type === "widgets") {
       activateWidget(recentItem.id);

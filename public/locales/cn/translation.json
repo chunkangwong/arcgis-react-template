@@ -1,0 +1,19 @@
+{
+  "Open": "展开",
+  "Close": "折叠",
+  "Language Setting": "语言设置",
+  "Toggle Light Mode": "开启浅色模式",
+  "Toggle Dark Mode": "开启深色模式",
+  "Profile": "个人资料",
+  "Search for widget...": "搜索小工具...",
+  "Adding layer...": "添加图层...",
+  "Layer added": "图层已添加",
+  "Error adding layer": "添加图层时出错",
+  "Search...": "搜索...",
+  "Search for places": "搜索地点",
+  "Search for portal items": "搜索门户项目",
+  "Search for widgets": "搜索小工具",
+  "Places": "地点",
+  "Portal Items": "门户项目",
+  "Widgets": "小工具"
+}
