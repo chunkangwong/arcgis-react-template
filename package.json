@@ -23,6 +23,7 @@
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.18",
     "i18next": "^23.10.1",
+    "i18next-http-backend": "^2.5.0",
     "immer": "^10.0.3",
     "lucide-react": "^0.344.0",
     "next-themes": "^0.2.1",

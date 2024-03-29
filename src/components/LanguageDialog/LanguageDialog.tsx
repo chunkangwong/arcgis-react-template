@@ -38,8 +38,10 @@ export const LanguageDialog = ({
   setOpen,
 }: LanguageDialogProps) => {
   const [searchKeyword, setSearchKeyword] = useState("");
-  const { i18n } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const {
+    i18n: { changeLanguage, language },
+  } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(language);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -50,7 +52,7 @@ export const LanguageDialog = ({
   };
 
   const handleConfirm = async () => {
-    await i18n.changeLanguage(selectedLanguage);
+    await changeLanguage(selectedLanguage);
     setOpen(false);
   };
 
