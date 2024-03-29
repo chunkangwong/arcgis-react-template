@@ -4,6 +4,7 @@ import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { selectActiveWidgets, useWidgetStore } from "@/store/useWidgetStore";
 import { DarkModeToggleButton } from "./DarkModeToggleButton";
+import { LanguageButton } from "./LanguageButton";
 import { ProfileButton } from "./ProfileButton";
 import { SidebarButton } from "./SidebarButton";
 import { SidebarToggleButton } from "./SidebarToggleButton";
@@ -33,6 +34,7 @@ export const Sidebar = () => {
         />
       ))}
       <div className="flex md:flex-col ml-auto md:mt-auto gap-4">
+        <LanguageButton side={side} />
         <DarkModeToggleButton side={side} />
         <ProfileButton side={side} />
       </div>

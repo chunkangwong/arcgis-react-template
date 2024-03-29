@@ -1,0 +1,98 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import { Button } from "../ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { Input } from "../ui/input";
+import { LanguageList } from "./LanguageList";
+
+interface LanguageDialogProps {
+  children: React.ReactNode;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+const languages = [
+  {
+    value: "en",
+    label: "English",
+  },
+  {
+    value: "fr",
+    label: "French",
+  },
+];
+
+export const LanguageDialog = ({
+  children,
+  open,
+  setOpen,
+}: LanguageDialogProps) => {
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const { i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value);
+  };
+
+  const handleSelect = (value: string) => {
+    setSelectedLanguage(value);
+  };
+
+  const handleConfirm = async () => {
+    await i18n.changeLanguage(selectedLanguage);
+    setOpen(false);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="flex flex-col gap-y-4">
+        <DialogHeader>
+          <DialogTitle>Language Setting</DialogTitle>
+          <DialogDescription>
+            <Input
+              placeholder="Search for language"
+              value={searchKeyword}
+              onChange={handleChange}
+            />
+            <LanguageList
+              onSelect={handleSelect}
+              languageList={languages.filter((language) =>
+                language.label
+                  .toLowerCase()
+                  .includes(searchKeyword.toLowerCase()),
+              )}
+              selectedLanguage={selectedLanguage}
+            />
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter className="flex flex-col gap-y-4 sm:flex-row">
+          <DialogClose asChild>
+            <Button variant="outline" size="sm">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button
+            variant="destructive"
+            className="sm:mr-auto"
+            size="sm"
+            onClick={handleConfirm}
+          >
+            Confirm
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+};
