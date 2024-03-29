@@ -1,6 +1,7 @@
-import { toggleDarkMode } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
+
+import { toggleDarkMode } from "@/lib/utils";
 import { Tooltip } from "../Tooltip";
 import { Button } from "../ui/button";
 
@@ -18,7 +19,10 @@ export const DarkModeToggleButton = ({ side }: DarkModeToggleButtonProps) => {
   };
 
   return (
-    <Tooltip title="Toggle Dark Mode" side={side}>
+    <Tooltip
+      title={isDarkMode ? "Toggle Light Mode" : "Toggle Dark Mode"}
+      side={side}
+    >
       <Button className="h-8 w-8" size="icon" onClick={handleClick}>
         {isDarkMode ? (
           <Moon className="h-4 w-4" />
