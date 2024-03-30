@@ -65,7 +65,7 @@ export const LanguageDialog = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="flex flex-col gap-y-4">
-        <DialogHeader>
+        <DialogHeader className="flex flex-col gap-y-4">
           <DialogTitle>{t("Language Setting")}</DialogTitle>
           <DialogDescription>
             <Input
