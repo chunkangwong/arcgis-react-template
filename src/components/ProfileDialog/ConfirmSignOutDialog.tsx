@@ -1,5 +1,6 @@
 import esriId from "@arcgis/core/identity/IdentityManager";
 
+import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -19,6 +20,8 @@ interface ConfirmSignOutDialogProps {
 export const ConfirmSignOutDialog = ({
   children,
 }: ConfirmSignOutDialogProps) => {
+  const { t } = useTranslation();
+
   const handleSignOut = () => {
     esriId.destroyCredentials();
     window.location.reload();
@@ -29,15 +32,15 @@ export const ConfirmSignOutDialog = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="flex flex-col gap-y-4">
         <DialogHeader>
-          <DialogTitle>Sign Out</DialogTitle>
+          <DialogTitle>{t("Sign Out")}</DialogTitle>
           <DialogDescription>
-            Are you sure you want to sign out?
+            {t("Are you sure you want to sign out?")}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex flex-col gap-y-4 sm:flex-row">
           <DialogClose asChild>
             <Button variant="outline" size="sm">
-              Cancel
+              {t("Cancel")}
             </Button>
           </DialogClose>
           <Button
@@ -46,7 +49,7 @@ export const ConfirmSignOutDialog = ({
             size="sm"
             onClick={handleSignOut}
           >
-            Confirm
+            {t("Confirm")}
           </Button>
         </DialogFooter>
       </DialogContent>
