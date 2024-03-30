@@ -1,4 +1,5 @@
 import { Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 import { Tab, useSearchDialogStore } from "@/store/useSearchDialogStore";
@@ -16,6 +17,8 @@ export const SearchButton = ({
   label,
   tabToOpen,
 }: SearchButtonProps) => {
+  const { t } = useTranslation();
+
   const setSearchDialog = useSearchDialogStore(
     (state) => state.setSearchDialog,
   );
@@ -34,7 +37,7 @@ export const SearchButton = ({
       onClick={handleClick}
     >
       <Search className="mr-4 h-4 w-4 opacity-50" />
-      {label ?? "Search ..."}
+      {label ?? t("Search...")}
       <HotkeyChip>⌘ k</HotkeyChip>
     </Button>
   );

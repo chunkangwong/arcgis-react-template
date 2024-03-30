@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useResizeSidebarWidth } from "@/hooks/useResizeSidebarWidth";
 import { cn } from "@/lib/utils";
@@ -56,12 +58,13 @@ const WidgetPanelWrapper = ({
 };
 
 export const WidgetPanel = () => {
+  const { t } = useTranslation();
   return (
     <WidgetPanelWrapper
       searchButton={
         <SearchButton
           fullWidth
-          label="Search for widget..."
+          label={t("Search for widget...")}
           tabToOpen="widgets"
         />
       }

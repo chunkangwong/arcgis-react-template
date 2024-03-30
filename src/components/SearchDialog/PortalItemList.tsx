@@ -1,5 +1,6 @@
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { Layers } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 import { map, view } from "@/arcgis";
@@ -14,6 +15,8 @@ interface PortalItemListProps {
 }
 
 export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
+  const { t } = useTranslation();
+
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } =
     useQueryPortalItems({
       searchTerm,
@@ -29,14 +32,14 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
 
   const getEmptyText = () => {
     if (isFetching) {
-      return "Searching portal items...";
+      return t("Searching portal items...");
     }
 
     if (searchTerm) {
-      return `No portal items found for "${searchTerm}"`;
+      return t("No portal items found", { searchTerm });
     }
 
-    return "Type to search for portal items";
+    return t("Type to search for portal items");
   };
 
   const handleSelect = async (value: string) => {
@@ -49,7 +52,7 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
       }
     }
     try {
-      toast.info("Adding layer...");
+      toast.info(t("Adding layer..."));
       const layer = new FeatureLayer({
         portalItem: {
           id: value,
@@ -63,10 +66,10 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
         type: "portalItems",
       });
       await view.goTo(layer.fullExtent);
-      toast.success("Layer added");
+      toast.success(t("Layer added"));
     } catch (error) {
       console.error(error);
-      toast.error("Error adding layer");
+      toast.error(t("Error adding layer"));
     } finally {
       setSearchDialogOpen(false);
     }
@@ -86,7 +89,7 @@ export const PortalItemList = ({ searchTerm }: PortalItemListProps) => {
             variant="link"
             className="w-full"
           >
-            More
+            {t("More")}
           </Button>
         ) : null
       }

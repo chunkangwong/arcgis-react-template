@@ -1,5 +1,6 @@
 import { Search } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useDebounce } from "@/hooks/useDebounce";
 import { Tab, useSearchDialogStore } from "@/store/useSearchDialogStore";
@@ -17,6 +18,8 @@ const placeholders: Record<Tab, string> = {
 };
 
 export const SearchDialog = () => {
+  const { t } = useTranslation();
+
   const [searchTerms, setSearchTerms] = useState<Record<Tab, string>>({
     places: "",
     portalItems: "",
@@ -51,7 +54,7 @@ export const SearchDialog = () => {
         <div className="flex items-center border-b px-3">
           <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
           <Input
-            placeholder={placeholders[tab]}
+            placeholder={t(placeholders[tab])}
             value={searchTerms[tab]}
             onChange={handleChange}
             className="border-0"
@@ -59,9 +62,9 @@ export const SearchDialog = () => {
         </div>
         <Tabs value={tab} onValueChange={handleTabChange}>
           <TabsList className="w-full rounded-none">
-            <TabsTrigger value="places">Places</TabsTrigger>
-            <TabsTrigger value="portalItems">Portal Items</TabsTrigger>
-            <TabsTrigger value="widgets">Widgets</TabsTrigger>
+            <TabsTrigger value="places">{t("Places")}</TabsTrigger>
+            <TabsTrigger value="portalItems">{t("Portal Items")}</TabsTrigger>
+            <TabsTrigger value="widgets">{t("Widgets")}</TabsTrigger>
           </TabsList>
           <TabsContent value="places">
             <PlaceList searchTerm={debouncedSearchTerms["places"]} />

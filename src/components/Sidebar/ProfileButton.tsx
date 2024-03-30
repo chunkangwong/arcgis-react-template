@@ -1,4 +1,5 @@
 import { User } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { ProfileDialog } from "../ProfileDialog";
 import { Tooltip } from "../Tooltip";
@@ -9,10 +10,12 @@ interface ProfileButtonProps {
 }
 
 export const ProfileButton = ({ side }: ProfileButtonProps) => {
+  const { t } = useTranslation();
+
   return (
     <ProfileDialog>
       <Button className="h-8 w-8 " size="icon">
-        <Tooltip side={side} title="Profile" sideOffset={8}>
+        <Tooltip side={side} title={t("Profile")} sideOffset={8}>
           <User />
         </Tooltip>
       </Button>
