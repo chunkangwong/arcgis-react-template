@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 type LanguageListProps = {
   languageList: {
@@ -16,6 +17,7 @@ export const LanguageList = ({
   selectedLanguage,
   onSelect,
 }: LanguageListProps) => {
+  const { t } = useTranslation();
   const handleSelect = (value: string) => () => {
     onSelect(value);
   };
@@ -35,7 +37,7 @@ export const LanguageList = ({
   return (
     <ul className="max-h-[300px] overflow-y-auto overflow-x-hidden p-1">
       {languageList.length === 0 ? (
-        <p className="py-6 text-center text-sm">No language found</p>
+        <p className="py-6 text-center text-sm">{t("No language found")}</p>
       ) : (
         languageList.map((language) => (
           <li

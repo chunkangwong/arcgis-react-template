@@ -8,6 +8,7 @@ import {
   selectWidgetsBySearchTerm,
   useWidgetStore,
 } from "@/store/useWidgetStore";
+import { useTranslation } from "react-i18next";
 import { SearchList } from "./SearchList";
 
 interface WidgetListProps {
@@ -15,6 +16,8 @@ interface WidgetListProps {
 }
 
 export const WidgetList = ({ searchTerm }: WidgetListProps) => {
+  const { t } = useTranslation();
+
   const widgetList = useMemo(
     () => selectWidgetsBySearchTerm(searchTerm),
     [searchTerm],
@@ -42,7 +45,7 @@ export const WidgetList = ({ searchTerm }: WidgetListProps) => {
       icon={Component}
       searchList={widgetList}
       onSelect={handleSelect}
-      emptyText="No widgets found"
+      emptyText={t("No widgets found")}
     />
   );
 };

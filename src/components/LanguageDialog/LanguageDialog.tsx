@@ -43,6 +43,7 @@ export const LanguageDialog = ({
 }: LanguageDialogProps) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const {
+    t,
     i18n: { changeLanguage, language },
   } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(language);
@@ -65,10 +66,10 @@ export const LanguageDialog = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="flex flex-col gap-y-4">
         <DialogHeader>
-          <DialogTitle>Language Setting</DialogTitle>
+          <DialogTitle>{t("Language Setting")}</DialogTitle>
           <DialogDescription>
             <Input
-              placeholder="Search for language"
+              placeholder={t("Search for languages")}
               value={searchKeyword}
               onChange={handleChange}
             />
@@ -86,7 +87,7 @@ export const LanguageDialog = ({
         <DialogFooter className="flex flex-col gap-y-4 sm:flex-row">
           <DialogClose asChild>
             <Button variant="outline" size="sm">
-              Cancel
+              {t("Cancel")}
             </Button>
           </DialogClose>
           <Button
@@ -95,7 +96,7 @@ export const LanguageDialog = ({
             size="sm"
             onClick={handleConfirm}
           >
-            Confirm
+            {t("Confirm")}
           </Button>
         </DialogFooter>
       </DialogContent>

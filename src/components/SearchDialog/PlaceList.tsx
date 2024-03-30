@@ -1,4 +1,5 @@
 import { Pin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { view } from "@/arcgis";
 import { useSearchViewModel } from "@/hooks/useSearchViewModel";
@@ -11,6 +12,8 @@ interface PlaceListProps {
 }
 
 export const PlaceList = ({ searchTerm }: PlaceListProps) => {
+  const { t } = useTranslation();
+
   const { data, isFetching } = useSearchViewModel(searchTerm);
   const setSearchDialogOpen = useSearchDialogStore(
     (state) => state.setSearchDialogOpen,
@@ -19,14 +22,14 @@ export const PlaceList = ({ searchTerm }: PlaceListProps) => {
 
   const getEmptyText = () => {
     if (isFetching) {
-      return "Searching places...";
+      return t("Searching places...");
     }
 
     if (searchTerm) {
-      return `No places found for "${searchTerm}"`;
+      return t("No places found", { searchTerm });
     }
 
-    return "Type to search for places";
+    return t("Type to search for places");
   };
 
   const handleSelect = (_: string, index: number) => {
