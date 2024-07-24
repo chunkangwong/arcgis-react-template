@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -67,22 +66,20 @@ export const LanguageDialog = ({
       <DialogContent className="flex flex-col gap-y-4">
         <DialogHeader className="flex flex-col gap-y-4">
           <DialogTitle>{t("Language Setting")}</DialogTitle>
-          <DialogDescription>
-            <Input
-              placeholder={t("Search for languages")}
-              value={searchKeyword}
-              onChange={handleChange}
-            />
-            <LanguageList
-              onSelect={handleSelect}
-              languageList={languages.filter((language) =>
-                language.label
-                  .toLowerCase()
-                  .includes(searchKeyword.toLowerCase()),
-              )}
-              selectedLanguage={selectedLanguage}
-            />
-          </DialogDescription>
+          <Input
+            placeholder={t("Search for languages")}
+            value={searchKeyword}
+            onChange={handleChange}
+          />
+          <LanguageList
+            onSelect={handleSelect}
+            languageList={languages.filter((language) =>
+              language.label
+                .toLowerCase()
+                .includes(searchKeyword.toLowerCase()),
+            )}
+            selectedLanguage={selectedLanguage}
+          />
         </DialogHeader>
         <DialogFooter className="flex flex-col gap-y-4 sm:flex-row">
           <DialogClose asChild>
